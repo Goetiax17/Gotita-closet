@@ -2855,7 +2855,7 @@ body.celestial-mode .lyzyval-art .art-image {
 <span id="site-marquee-text">
 
 ★ VIVA MELANIE MARTINEZ★
-✦ UZI DOORMAN SOY TAN YO ✦
+✦ UZI DOORMAN SOY YO ✦
 🦋 TENGO SUEÑO 🦋
 ★ AQUI SUBO MIS COSITAS ★
 ♡ MULTIFANDOM  ♡
@@ -3068,8 +3068,8 @@ body.celestial-mode .lyzyval-art .art-image {
 
     <div class="art-image">
 
-        <img src="COLLAB.png"
-             alt="Mi dibujo">
+           <img src="114 sin título_20261008191744.png"
+               alt="Dibujo de 114">
 
     </div>
 
@@ -3153,13 +3153,8 @@ body.celestial-mode .lyzyval-art .art-image {
 
 <audio
     id="audio"
-    autoplay
     preload="auto"
     style="display:none">
-
-    <source
-        src="MURDER DRONES - FIGHT TIL' I'M GOOD ENOUGH (ft. The Living Tombstone) [Official Music Video].mp3"
-        type="audio/mpeg">
 
 </audio>
 
@@ -3296,12 +3291,13 @@ const audio =
     document.getElementById("audio");
 
 const tracks = [
-    "MURDER DRONES - FIGHT TIL' I'M GOOD ENOUGH (ft. The Living Tombstone) [Official Music Video].mp3",
-    "Roy Bee - Kiss Me Again (Instrumental) (1).mp3",
-    "OFFICIAL INSTRUMENTAL - Psycho Teddy.mp3"
+    { src: "MURDER DRONES - FIGHT TIL' I'M GOOD ENOUGH (ft. The Living Tombstone) [Official Music Video].mp3" },
+    { src: "Roy Bee - Kiss Me Again (Instrumental) (1).mp3" },
+    { src: "OFFICIAL INSTRUMENTAL - Psycho Teddy.mp3" },
+    { src: "Gwen Stefani - What You Waiting For.mp3", startAt: 20, volume: 0.6 }
 ];
 
-let currentTrack = 0;
+let currentTrack = -1;
 let isLyzyvalFocusTrackPlaying = false;
 let focusTrackRequest = 0;
 
@@ -3337,16 +3333,25 @@ function playRandomTrack() {
 
     let nextTrack = Math.floor(Math.random() * tracks.length);
 
-    if (tracks.length > 1 && nextTrack === currentTrack) {
+    if (currentTrack >= 0 && tracks.length > 1 && nextTrack === currentTrack) {
         nextTrack = (nextTrack + 1 + Math.floor(Math.random() * (tracks.length - 1))) % tracks.length;
     }
 
     currentTrack = nextTrack;
+    const track = tracks[currentTrack];
     audio.pause();
-    audio.src = tracks[currentTrack];
-    audio.volume = /Psycho Teddy/i.test(tracks[currentTrack]) ? 0.35 : 0.75;
+    audio.src = track.src;
+    audio.volume = track.volume ?? (/Psycho Teddy/i.test(track.src) ? 0.35 : 0.75);
     audio.load();
-    audio.play().catch(function() {});
+
+    if (track.startAt) {
+        audio.addEventListener("loadedmetadata", function() {
+            audio.currentTime = track.startAt;
+            audio.play().catch(function() {});
+        }, { once: true });
+    } else {
+        audio.play().catch(function() {});
+    }
 
 }
 
@@ -3362,14 +3367,20 @@ audio.addEventListener("ended", function() {
 
 window.addEventListener("load", function() {
 
-    playRandomTrack();
+    if (currentTrack < 0 && !isLyzyvalFocusTrackPlaying) {
+        playRandomTrack();
+    }
 
 });
 
 function startLocalMusic() {
 
     if (audio.paused && !isLyzyvalFocusTrackPlaying) {
-        playRandomTrack();
+        if (currentTrack < 0) {
+            playRandomTrack();
+        } else {
+            audio.play().catch(function() {});
+        }
     }
 
 }
