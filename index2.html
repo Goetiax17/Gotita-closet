@@ -1,0 +1,3617 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>★ Gotita Closet ★</title>
+<link rel="icon" type="image/gif" href="iconio craneo.gif">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --pink: #ff4fa3;
+    --hotpink: #ff1493;
+    --lightpink: #ffc5e2;
+    --baby: #ffe8f3;
+    --purple: #a77be5;
+
+    --black: #160e14;
+    --dark: #24141e;
+    --dark2: #321927;
+
+    --white: #fff5fa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    margin: 0;
+
+    background-color: var(--black);
+
+    background-image:
+        radial-gradient(var(--pink) 1px, transparent 1px),
+        radial-gradient(var(--purple) 1px, transparent 1px);
+
+    background-size: 72px 91px, 118px 103px;
+
+    background-position: 0 0, 0 0;
+
+    animation: moving-dot-pattern 18s linear infinite;
+
+    color: var(--white);
+
+    font-family: "Smooch Sans", sans-serif;
+
+    font-size: 18px;
+
+    cursor: url("scene cursor.png") 0 0, crosshair;
+}
+
+
+@keyframes moving-dot-pattern {
+
+    from {
+        background-position: 0 0, 0 0;
+    }
+
+    to {
+        background-position: 170px 115px, -140px 95px;
+    }
+
+}
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: -20%;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    opacity: .55;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(255,197,226,.8) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(167,123,229,.75) 0 1px, transparent 2px);
+
+    background-size: 150px 180px, 220px 260px, 310px 290px;
+
+    background-position: 20px 40px, 90px 120px, 160px 20px;
+
+    animation: drifting-sparkles 18s linear infinite;
+
+}
+
+@keyframes drifting-sparkles {
+
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(90px, 60px);
+    }
+
+}
+
+.floating-gifs {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    overflow: hidden;
+
+}
+
+.floating-skull {
+
+    position: absolute;
+
+    right: 12px;
+
+    bottom: 10px;
+
+    z-index: 5;
+
+    width: clamp(44px, 5vw, 68px);
+
+    height: auto;
+
+    object-fit: contain;
+
+    opacity: .9;
+
+    filter: drop-shadow(2px 3px 0 rgba(22,14,20,.75));
+
+}
+
+.lyzyval-mist {
+
+    position: fixed;
+
+    inset: -8%;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        radial-gradient(ellipse 72% 72% at 50% 48%, rgba(170, 205, 228, .32), transparent 78%),
+        radial-gradient(ellipse 56% 65% at 8% 48%, rgba(154, 211, 222, .34), transparent 74%),
+        radial-gradient(ellipse 54% 62% at 92% 54%, rgba(178, 148, 213, .32), transparent 76%),
+        radial-gradient(ellipse 78% 32% at 50% 96%, rgba(94, 156, 174, .2), transparent 78%),
+        linear-gradient(115deg, rgba(37, 68, 82, .08), transparent 44%, rgba(77, 60, 103, .08));
+
+    filter: blur(12px);
+
+    transition: opacity 2.4s ease;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-mist {
+
+    opacity: .72;
+
+}
+
+.lyzyval-petals {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 21;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-petals {
+
+    opacity: .9;
+
+    visibility: visible;
+
+}
+
+.lyzyval-petals span {
+
+    position: absolute;
+
+    top: -10vh;
+
+    width: var(--petal-size, 12px);
+
+    aspect-ratio: .68;
+
+    border-radius: 85% 0 85% 0;
+
+    background: var(--petal-color, rgba(226, 186, 222, .76));
+
+    box-shadow: 0 0 9px rgba(180, 204, 223, .25);
+
+    opacity: .78;
+
+    animation: lyzyval-petal-fall var(--fall-time, 18s) linear var(--fall-delay, 0s) infinite;
+
+}
+
+.lyzyval-petals span:nth-child(1) { left: 6%; --petal-size: 13px; --fall-time: 18s; --fall-delay: -13s; --fall-drift: 3vw; --fall-spin: 520deg; --petal-color: rgba(233, 181, 221, .82); }
+.lyzyval-petals span:nth-child(2) { left: 15%; --petal-size: 9px; --fall-time: 24s; --fall-delay: -7s; --fall-drift: -4vw; --fall-spin: -460deg; --petal-color: rgba(167, 211, 221, .78); }
+.lyzyval-petals span:nth-child(3) { left: 25%; --petal-size: 11px; --fall-time: 20s; --fall-delay: -17s; --fall-drift: 5vw; --fall-spin: 620deg; --petal-color: rgba(198, 174, 224, .8); }
+.lyzyval-petals span:nth-child(4) { left: 35%; --petal-size: 8px; --fall-time: 27s; --fall-delay: -4s; --fall-drift: -3vw; --fall-spin: -540deg; --petal-color: rgba(222, 194, 226, .7); }
+.lyzyval-petals span:nth-child(5) { left: 45%; --petal-size: 14px; --fall-time: 22s; --fall-delay: -11s; --fall-drift: 4vw; --fall-spin: 480deg; --petal-color: rgba(164, 205, 218, .76); }
+.lyzyval-petals span:nth-child(6) { left: 55%; --petal-size: 9px; --fall-time: 19s; --fall-delay: -2s; --fall-drift: -5vw; --fall-spin: -620deg; --petal-color: rgba(238, 191, 220, .78); }
+.lyzyval-petals span:nth-child(7) { left: 65%; --petal-size: 12px; --fall-time: 25s; --fall-delay: -19s; --fall-drift: 3vw; --fall-spin: 560deg; --petal-color: rgba(182, 197, 225, .76); }
+.lyzyval-petals span:nth-child(8) { left: 75%; --petal-size: 8px; --fall-time: 21s; --fall-delay: -9s; --fall-drift: -4vw; --fall-spin: -500deg; --petal-color: rgba(228, 180, 215, .8); }
+.lyzyval-petals span:nth-child(9) { left: 85%; --petal-size: 13px; --fall-time: 28s; --fall-delay: -23s; --fall-drift: 5vw; --fall-spin: 650deg; --petal-color: rgba(166, 211, 220, .78); }
+.lyzyval-petals span:nth-child(10) { left: 95%; --petal-size: 10px; --fall-time: 23s; --fall-delay: -15s; --fall-drift: -3vw; --fall-spin: -580deg; --petal-color: rgba(211, 186, 226, .76); }
+.lyzyval-petals span:nth-child(11) { left: 1%; --petal-size: 8px; --fall-time: 14s; --fall-delay: -1s; --fall-drift: -4vw; --fall-spin: -520deg; --petal-color: rgba(179, 216, 226, .76); }
+.lyzyval-petals span:nth-child(12) { left: 11%; --petal-size: 12px; --fall-time: 16s; --fall-delay: -5s; --fall-drift: 4vw; --fall-spin: 570deg; --petal-color: rgba(232, 184, 221, .8); }
+.lyzyval-petals span:nth-child(13) { left: 21%; --petal-size: 9px; --fall-time: 13s; --fall-delay: -6s; --fall-drift: -3vw; --fall-spin: -440deg; --petal-color: rgba(198, 184, 228, .74); }
+.lyzyval-petals span:nth-child(14) { left: 31%; --petal-size: 11px; --fall-time: 18s; --fall-delay: -8s; --fall-drift: 5vw; --fall-spin: 680deg; --petal-color: rgba(228, 196, 225, .78); }
+.lyzyval-petals span:nth-child(15) { left: 41%; --petal-size: 7px; --fall-time: 15s; --fall-delay: -10s; --fall-drift: -5vw; --fall-spin: -560deg; --petal-color: rgba(169, 211, 224, .74); }
+.lyzyval-petals span:nth-child(16) { left: 51%; --petal-size: 13px; --fall-time: 17s; --fall-delay: -12s; --fall-drift: 3vw; --fall-spin: 510deg; --petal-color: rgba(238, 188, 220, .8); }
+.lyzyval-petals span:nth-child(17) { left: 61%; --petal-size: 8px; --fall-time: 14s; --fall-delay: -14s; --fall-drift: -4vw; --fall-spin: -630deg; --petal-color: rgba(176, 207, 227, .76); }
+.lyzyval-petals span:nth-child(18) { left: 71%; --petal-size: 12px; --fall-time: 19s; --fall-delay: -16s; --fall-drift: 4vw; --fall-spin: 600deg; --petal-color: rgba(227, 181, 216, .78); }
+.lyzyval-petals span:nth-child(19) { left: 81%; --petal-size: 9px; --fall-time: 13s; --fall-delay: -18s; --fall-drift: -3vw; --fall-spin: -480deg; --petal-color: rgba(169, 212, 225, .76); }
+.lyzyval-petals span:nth-child(20) { left: 91%; --petal-size: 11px; --fall-time: 16s; --fall-delay: -20s; --fall-drift: 5vw; --fall-spin: 640deg; --petal-color: rgba(224, 190, 228, .8); }
+
+.lyzyval-corner-branches {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 21;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    visibility: hidden;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-corner-branches {
+
+    visibility: visible;
+
+}
+
+.lyzyval-branch-defs {
+
+    position: absolute;
+
+    width: 0;
+
+    height: 0;
+
+    overflow: hidden;
+
+}
+
+.lyzyval-corner-branch {
+
+    position: absolute;
+
+    width: clamp(150px, 18vw, 260px);
+
+    height: auto;
+
+    overflow: visible;
+
+    opacity: .82;
+
+    filter: drop-shadow(0 0 10px rgba(116, 171, 171, .16));
+
+}
+
+.lyzyval-corner-branch.top-right {
+
+    top: -8px;
+
+    right: -8px;
+
+    transform: scaleX(-1);
+
+}
+
+.lyzyval-corner-branch.bottom-left {
+
+    bottom: -8px;
+
+    left: -8px;
+
+    transform: scaleY(-1);
+
+}
+
+@media (max-width: 450px) {
+
+    .lyzyval-corner-branch {
+
+        width: 78px;
+
+    }
+
+}
+
+@keyframes lyzyval-petal-fall {
+
+    0% { transform: translate3d(0, -8vh, 0) rotate(0deg); }
+
+    25% { transform: translate3d(2vw, 18vh, 0) rotate(150deg); }
+
+    50% { transform: translate3d(-1vw, 51vh, 0) rotate(310deg); }
+
+    76% { transform: translate3d(3vw, 84vh, 0) rotate(470deg); }
+
+    100% { transform: translate3d(var(--fall-drift, 2vw), 112vh, 0) rotate(var(--fall-spin, 540deg)); }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .lyzyval-mist {
+
+        transition: none;
+
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .floating-skull {
+
+        right: 7px;
+
+        bottom: 7px;
+
+        width: 46px;
+
+    }
+
+}
+
+.floating-gif {
+
+    position: absolute;
+
+    width: 110px;
+
+    height: 110px;
+
+    object-fit: contain;
+
+    filter: drop-shadow(4px 4px 0 rgba(22,14,20,.75));
+
+    animation: float-gif 5s ease-in-out infinite;
+
+}
+
+.floating-gif.draggable-gif {
+
+    pointer-events: auto;
+
+    cursor: grab;
+
+    user-select: none;
+
+    touch-action: none;
+
+    z-index: 8;
+
+}
+
+.floating-gif.draggable-gif.is-dragging {
+
+    cursor: grabbing;
+
+}
+
+.default-gifs,
+.celestial-gifs {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    transition: opacity .45s ease;
+
+}
+
+.default-gifs {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.celestial-gifs {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+body.celestial-mode .default-gifs {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+body.celestial-mode .celestial-gifs {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.default-owo {
+
+    top: 6%;
+
+    left: 1%;
+
+}
+
+.default-mariposa-uno {
+
+    top: 10%;
+
+    right: 1%;
+
+    animation-duration: 6s;
+
+    animation-delay: -5s;
+
+}
+
+.default-mariposa-dos {
+
+    left: 1%;
+
+    bottom: 5%;
+
+    animation-duration: 5.5s;
+
+    animation-delay: -10s;
+
+}
+
+.default-estrellitas {
+
+    right: 1%;
+
+    bottom: 5%;
+
+    animation-duration: 6.5s;
+
+    animation-delay: -15s;
+
+}
+
+.default-fluttershy {
+
+    top: 44%;
+
+    left: 6%;
+
+    animation-duration: 5.8s;
+
+    animation-delay: -8s;
+
+}
+
+.default-corazoncito {
+
+    top: 46%;
+
+    right: 6%;
+
+    animation-duration: 7s;
+
+    animation-delay: -20s;
+
+}
+
+.default-uzi {
+
+    top: 66%;
+
+    left: 72%;
+
+    width: 150px;
+
+    height: 150px;
+
+    animation: none;
+
+}
+
+body.lyzyval-focus-mode .container > header,
+body.lyzyval-focus-mode .container > section:not(#lyzyval):not(#music):not(#links),
+body.lyzyval-focus-mode .container > footer,
+body.lyzyval-focus-mode .logo,
+body.lyzyval-focus-mode .subtitle,
+body.lyzyval-focus-mode nav,
+body.lyzyval-focus-mode .title,
+body.lyzyval-focus-mode .box,
+body.lyzyval-focus-mode #links {
+
+    display: none !important;
+
+}
+
+body.lyzyval-focus-mode .container #music {
+
+    display: block !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+    position: fixed;
+
+    bottom: 24px;
+
+    right: 24px;
+
+    width: min(420px, 82vw);
+
+    z-index: 25;
+
+}
+
+body.lyzyval-focus-mode #lyzyval {
+
+    position: fixed;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(820px, 82vw);
+
+    z-index: 24;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-art {
+
+    width: 100%;
+
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, .4), 0 0 26px rgba(255, 79, 163, .7);
+
+}
+
+body.lyzyval-focus-mode .music {
+
+    width: 100%;
+
+    max-width: 420px;
+
+    margin: 0 auto;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+}
+
+body.lyzyval-focus-mode .floating-gifs {
+
+    z-index: 30;
+
+}
+
+@keyframes space-drift {
+
+    0% { transform: translate3d(0, 0, 0) rotate(-3deg) scale(.98); }
+
+    35% { transform: translate3d(8px, -13px, 0) rotate(1deg) scale(1.01); }
+
+    70% { transform: translate3d(-7px, -20px, 0) rotate(3deg) scale(1.02); }
+
+    100% { transform: translate3d(4px, -5px, 0) rotate(-2deg) scale(1); }
+
+}
+
+@keyframes home-space-drift {
+
+    0% { transform: translate3d(0, 0, 0) rotate(-2deg) scale(1); }
+
+    12% { transform: translate3d(12px, -9px, 0) rotate(5deg) scale(1.03); }
+
+    25% { transform: translate3d(-6px, -18px, 0) rotate(-6deg) scale(.98); }
+
+    39% { transform: translate3d(-12px, 7px, 0) rotate(4deg) scale(1.02); }
+
+    53% { transform: translate3d(7px, -22px, 0) rotate(7deg) scale(1.04); }
+
+    67% { transform: translate3d(12px, 10px, 0) rotate(-5deg) scale(.97); }
+
+    82% { transform: translate3d(-10px, -6px, 0) rotate(3deg) scale(1.02); }
+
+    93% { transform: translate3d(5px, -15px, 0) rotate(-7deg) scale(.99); }
+
+    100% { transform: translate3d(0, 0, 0) rotate(-2deg) scale(1); }
+
+}
+
+body:not(.celestial-mode) .default-gifs .floating-gif:not(.draggable-gif) {
+
+    animation-name: home-space-drift;
+
+    animation-duration: 9s;
+
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+
+    animation-direction: normal;
+
+}
+
+body.lyzyval-focus-mode .celestial-gifs .floating-gif {
+
+    animation-name: space-drift;
+
+    animation-duration: 24s;
+
+    animation-timing-function: ease-in-out;
+
+    animation-iteration-count: infinite;
+
+    animation-direction: alternate;
+
+}
+
+body.lyzyval-focus-mode .celestial-gifs .floating-stars-lyz {
+
+    animation-duration: 20s;
+
+}
+
+body.lyzyval-focus-mode .celestial-gifs .floating-stars-liz {
+
+    animation-duration: 28s;
+
+}
+
+body.lyzyval-focus-mode .celestial-gifs .floating-focus-lyz {
+
+    animation-duration: 26s;
+
+}
+
+body.lyzyval-focus-mode .celestial-gifs .floating-focus-val {
+
+    animation-duration: 30s;
+
+}
+
+.floating-butterfly {
+
+    top: 6%;
+
+    left: 1%;
+
+    width: 96px;
+
+    height: 96px;
+
+    animation: float-gif 5s ease-in-out infinite;
+
+}
+
+.floating-stars-lyz {
+
+    left: 1%;
+
+    bottom: 7%;
+
+    width: 84px;
+
+    height: 84px;
+
+    animation: float-gif 5.8s ease-in-out infinite;
+
+    animation-delay: -2s;
+
+}
+
+.floating-stars-liz {
+
+    top: 30%;
+
+    right: 1%;
+
+    width: 90px;
+
+    height: 90px;
+
+    animation: float-gif 6.4s ease-in-out infinite;
+
+    animation-delay: -3.5s;
+
+}
+
+.floating-focus-image {
+
+    width: clamp(90px, 9vw, 150px);
+
+    height: clamp(90px, 9vw, 150px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    mix-blend-mode: normal;
+
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(220,242,255,.3));
+
+}
+
+body.lyzyval-focus-mode .floating-focus-image {
+
+    opacity: .92;
+
+    visibility: visible;
+
+}
+
+.floating-focus-lyz {
+
+    top: 36%;
+
+    left: 5%;
+
+    animation-duration: 6.2s;
+
+    animation-delay: -1.4s;
+
+}
+
+.floating-focus-val {
+
+    top: 52%;
+
+    right: 5%;
+
+    animation-duration: 7s;
+
+    animation-delay: -3.2s;
+
+}
+
+@media (max-width: 700px) {
+
+    .floating-focus-image {
+
+        width: 78px;
+
+        height: 78px;
+
+    }
+
+    .floating-focus-lyz {
+
+        top: 15%;
+
+        left: 2%;
+
+    }
+
+    .floating-focus-val {
+
+        top: 15%;
+
+        right: 2%;
+
+    }
+
+}
+
+.floating-aaa-one {
+
+    top: 6%;
+
+    right: 1%;
+
+    animation-delay: -1.5s;
+
+}
+
+.floating-aaa-two {
+
+    right: 1%;
+
+    bottom: 5%;
+
+    animation-delay: -4s;
+
+}
+
+@keyframes float-gif {
+
+    0%, 100% {
+        transform: translateY(0) rotate(-6deg) scale(1);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(7deg) scale(1.06);
+    }
+
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.025) 0px,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+}
+
+.container {
+
+    width: 92%;
+
+    max-width: 1050px;
+
+    margin: 25px auto;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+header {
+
+    border: 3px solid var(--pink);
+
+    background: var(--dark);
+
+    padding: 20px;
+
+    box-shadow:
+        7px 7px 0 #6b2045,
+        0 0 25px rgba(255,20,147,.2);
+
+}
+
+.logo {
+
+    text-align: center;
+
+    font-size: clamp(50px, 9vw, 90px);
+
+    font-family: "Caveat Brush", cursive;
+
+    font-style: normal;
+
+    color: var(--pink);
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        4px 4px 0 #4d1734,
+        0 0 15px var(--hotpink);
+
+}
+
+.subtitle {
+
+    font-family: "Caveat Brush", cursive;
+
+    text-align: center;
+
+    color: var(--lightpink);
+
+    font-size: 15px;
+
+}
+
+nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 22px;
+
+}
+
+nav a {
+
+    background: var(--pink);
+
+    border: 2px solid white;
+
+    padding: 8px 15px;
+
+    color: #26121b;
+
+    font-weight: bold;
+
+    font-size: 13px;
+
+    box-shadow: 3px 3px 0 #000;
+
+    transition: .15s;
+
+}
+
+nav a:hover {
+
+    background: var(--baby);
+
+    color: var(--hotpink);
+
+    transform: translate(2px,2px);
+
+}
+
+.marquee {
+
+    margin: 20px 0;
+
+    padding: 8px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    border: 2px dashed var(--pink);
+
+    background: #28131f;
+
+    color: var(--lightpink);
+
+}
+
+.marquee span {
+
+    display: inline-block;
+
+    animation: marquee 16s linear infinite;
+
+}
+.marquee span.is-medieval-marquee {
+
+    font-family: "UnifrakturCook", serif;
+
+    font-size: 22px;
+
+}
+
+@keyframes marquee {
+
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+
+}
+
+.box {
+
+    border: 2px solid var(--pink);
+
+    background: rgba(30,16,26,.96);
+
+    padding: 25px;
+
+    box-shadow: 5px 5px 0 #5a1c3b;
+
+}
+
+.hero {
+
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr;
+
+    gap: 25px;
+
+}
+
+.hero h1 {
+
+    font-family: "Caveat Brush", cursive;
+
+    font-style: normal;
+
+    font-size: 65px;
+
+    line-height: .85;
+
+    margin: 15px 0;
+
+}
+
+.hero h1 span {
+
+    color: var(--pink);
+
+}
+
+.hero p {
+
+    color: var(--lightpink);
+
+    line-height: 1.8;
+
+}
+
+.punk {
+
+    color: var(--pink);
+
+    font-weight: bold;
+
+}
+
+.sticker {
+
+    min-height: 320px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.moon {
+
+    width: 240px;
+
+    height: 240px;
+
+    border-radius: 8px;
+
+    background: var(--lightpink);
+
+    color: var(--hotpink);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 95px;
+
+    box-shadow:
+        12px 12px 0 var(--pink),
+        -8px -8px 0 var(--purple);
+
+    transform: rotate(-3deg);
+
+}
+
+.moon img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 5px;
+
+}
+
+section {
+
+    margin-top: 55px;
+
+}
+
+.title {
+
+    font-family: "Caveat Brush", cursive;
+
+    display: inline-block;
+
+    background: var(--pink);
+
+    color: #25121b;
+
+    border: 2px solid white;
+
+    padding: 8px 18px;
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    box-shadow: 4px 4px 0 #5b1c3b;
+
+    margin-bottom: 20px;
+
+    transform: rotate(-1deg);
+
+}
+
+.about {
+
+    display: grid;
+
+    grid-template-columns: 230px 1fr;
+
+    gap: 25px;
+
+}
+
+.profile {
+
+    border: 2px solid var(--pink);
+
+    background: #291521;
+
+    padding: 10px;
+
+}
+
+.profile-picture {
+
+    height: 230px;
+
+    border: 2px dashed var(--lightpink);
+
+    background: #3b1d2b;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: var(--pink);
+
+    font-size: 25px;
+
+}
+
+.profile-picture img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.profile .tags {
+
+    margin-top: 10px;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+
+}
+
+.profile .tag {
+
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 5px;
+
+    border-color: #ffb4d6;
+
+    background: #e5007d;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+}
+
+.about-text {
+
+    border: 2px solid var(--pink);
+
+    background: #21121b;
+
+    padding: 25px;
+
+}
+
+.about-text p {
+
+    line-height: 1.8;
+
+    color: #ffd9e9;
+
+}
+
+.quote {
+
+    border-left: 4px solid var(--hotpink);
+
+    padding-left: 15px;
+
+    color: var(--pink) !important;
+
+    font-style: italic;
+
+}
+
+.tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+}
+
+.tag {
+
+    border: 1px solid var(--pink);
+
+    padding: 7px 10px;
+
+    background: #351927;
+
+    color: var(--lightpink);
+
+    font-size: 13px;
+
+}
+
+.gallery {
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 15px;
+
+}
+
+.art {
+
+    border: 3px solid var(--pink);
+
+    background: #21131c;
+
+    padding: 8px;
+
+    transition: .2s;
+
+    animation: art-float 3.6s ease-in-out infinite;
+
+}
+
+.lyzyval-art {
+
+    position: relative;
+
+    width: min(100%, 780px);
+
+    margin: 0 auto;
+
+    transition: width .55s ease;
+
+}
+
+#lyzyval,
+#lyzyval * {
+
+    cursor: url("cursor liz-small.png") 43 0, auto;
+
+}
+
+.lyzyval-art.is-expanded {
+
+    width: min(100%, 880px);
+
+}
+
+.lyzyval-stage {
+
+    position: relative;
+
+    width: 100%;
+
+}
+
+.lyzyval-banners {
+
+    display: none;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banners {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 22;
+
+    display: block;
+
+    pointer-events: none;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banner {
+
+    position: absolute;
+
+    top: 18px;
+
+    bottom: 18px;
+
+    --banner-width: clamp(84px, 8vw, 152px);
+
+    width: var(--banner-width);
+
+    height: auto;
+
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%);
+
+    filter: drop-shadow(2px 5px 3px rgba(4, 9, 18, .55));
+
+    transform-origin: top center;
+
+    animation: banner-sway 5s ease-in-out infinite alternate;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banner-left {
+
+    left: clamp(24px, 4vw, 76px);
+
+    background: linear-gradient(90deg, #9bc4d2 0%, #375477 12%, #1b2c4a 48%, #101b32 100%);
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banner-right {
+
+    right: clamp(24px, 4vw, 76px);
+
+    background: linear-gradient(90deg, #101b32 0%, #1b2c4a 48%, #375477 88%, #9bc4d2 100%);
+
+    animation-delay: -2.5s;
+
+    animation-duration: 5.8s;
+
+}
+
+@media (min-width: 1101px) {
+
+    body.lyzyval-focus-mode .lyzyval-banner-left {
+
+        left: calc(50% - 378px - var(--banner-width) - 60px);
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-right {
+
+        right: calc(50% - 378px - var(--banner-width) - 60px);
+
+    }
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banner::before {
+
+    position: absolute;
+
+    inset: 5px;
+
+    border: 1px solid rgba(190, 222, 234, .82);
+
+    clip-path: polygon(0 0, 100% 0, 100% 81%, 50% 100%, 0 81%);
+
+    content: "";
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banner::after {
+
+    position: absolute;
+
+    top: 21px;
+
+    left: 0;
+
+    width: 100%;
+
+    color: #d6edf4;
+
+    content: "✦";
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 23px;
+
+    text-align: center;
+
+    text-shadow: 0 0 11px rgba(168, 220, 230, .72);
+
+}
+
+@keyframes banner-sway {
+
+    from { transform: rotate(-1.8deg); }
+
+    to { transform: rotate(1.8deg); }
+
+}
+
+@media (max-width: 450px) {
+
+    body.lyzyval-focus-mode .lyzyval-banner {
+
+        top: 12px;
+
+        bottom: 12px;
+
+        --banner-width: clamp(30px, 8vw, 36px);
+
+        height: auto;
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-left {
+
+        left: 6px;
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-right {
+
+        right: 6px;
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner::after {
+
+        top: 14px;
+
+        font-size: 19px;
+
+    }
+
+}
+
+@media (min-width: 451px) and (max-width: 750px) {
+
+    body.lyzyval-focus-mode .lyzyval-banner {
+
+        --banner-width: clamp(28px, 6vw, 44px);
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-left {
+
+        left: clamp(8px, 2vw, 15px);
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-right {
+
+        right: clamp(8px, 2vw, 15px);
+
+    }
+
+}
+
+@media (min-width: 751px) and (max-width: 1100px) {
+
+    body.lyzyval-focus-mode .lyzyval-banner {
+
+        --banner-width: clamp(48px, 6vw, 68px);
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-left {
+
+        left: clamp(12px, 3vw, 34px);
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-right {
+
+        right: clamp(12px, 3vw, 34px);
+
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    body.lyzyval-focus-mode .lyzyval-banner {
+
+        animation: none;
+
+    }
+
+}
+
+.lyzyval-focus-title {
+
+    display: none;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-focus-title {
+
+    position: absolute;
+
+    top: -15px;
+
+    left: -18px;
+
+    z-index: 8;
+
+    display: block;
+
+    width: fit-content;
+
+    max-width: 100%;
+
+    margin: 0;
+
+    padding: 8px 16px;
+
+    border: 2px double rgba(192, 216, 226, .82);
+
+    background: linear-gradient(135deg, rgba(33, 39, 65, .98), rgba(16, 28, 43, .98));
+
+    color: #e5eef5;
+
+    font-family: "UnifrakturCook", "Cormorant Garamond", Georgia, serif;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    box-shadow: 0 0 0 3px rgba(143, 170, 203, .16), 4px 5px 0 rgba(6, 10, 20, .62), 0 0 16px rgba(130, 155, 193, .2);
+
+    transform: rotate(-2deg);
+
+}
+
+body.lyzyval-focus-mode .lyzyval-focus-title::before,
+body.lyzyval-focus-mode .lyzyval-focus-title::after {
+
+    color: #b8d7e2;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 13px;
+
+    vertical-align: 2px;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-focus-title::before {
+
+    content: "✦";
+
+    margin-right: 8px;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-focus-title::after {
+
+    content: "✦";
+
+    margin-left: 8px;
+
+
+
+@media (max-width: 450px) {
+
+    body.lyzyval-focus-mode .lyzyval-focus-title {
+
+        top: -12px;
+
+        left: -8px;
+
+        padding: 6px 10px;
+
+        font-size: 17px;
+
+    }
+
+}
+}
+
+.lyzyval-story {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    padding: 0 24px;
+
+    border-top: 0 solid var(--pink);
+
+    background: #21121b;
+
+    color: var(--lightpink);
+
+    line-height: 1.7;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transition: max-height .6s ease, opacity .35s ease, padding .45s ease, border-width .45s ease;
+
+}
+
+.lyzyval-art.is-expanded .lyzyval-story {
+
+    max-height: 600px;
+
+    padding: 18px 24px 20px;
+
+    border-top-width: 2px;
+
+    opacity: 1;
+
+}
+
+.lyzyval-story-title {
+
+    margin: 0 0 8px;
+
+    color: var(--pink);
+
+    font-family: "Caveat Brush", cursive;
+
+    font-size: 28px;
+
+}
+
+.lyzyval-story-title.is-medieval-title {
+
+    font-family: "UnifrakturCook", serif;
+
+}
+
+.lyzyval-art .lyzyval-story p {
+
+    margin: 0;
+
+    color: var(--lightpink);
+
+    font-size: 18px;
+
+}
+
+.lyzyval-story-flourish {
+
+    margin-top: 10px;
+
+    color: var(--hotpink);
+
+    font-size: 18px;
+
+
+}
+
+.lyzyval-art .art-image {
+
+    aspect-ratio: 3 / 2;
+
+    position: relative;
+
+    box-shadow: 0 0 0 3px white, 0 0 0 6px #080508;
+
+    cursor: pointer;
+
+    transition: aspect-ratio .5s ease, box-shadow .5s ease;
+
+}
+
+.lyzyval-art.is-expanded .art-image {
+
+    aspect-ratio: 4 / 3;
+
+}
+
+.lyzyval-art .art-image img {
+
+    object-fit: contain;
+
+}
+
+.lyzyval-image-controls {
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 18px;
+
+    left: 18px;
+
+    z-index: 5;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-image-controls {
+
+    display: flex;
+
+}
+
+.lyzyval-image-arrow {
+
+    display: grid;
+
+    width: 44px;
+
+    height: 44px;
+
+    place-items: center;
+
+    border: 1px solid rgba(192, 216, 226, .78);
+
+    border-radius: 50%;
+
+    background: rgba(8, 13, 25, .82);
+
+    color: #edf2fa;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    transition: background-color .2s ease, transform .2s ease;
+
+}
+
+.lyzyval-image-arrow:hover {
+
+    background: rgba(55, 66, 96, .94);
+
+    transform: scale(1.08);
+
+}
+
+.lyzyval-image-arrow:focus-visible {
+
+    outline: 2px solid #c0d8e2;
+
+    outline-offset: 3px;
+
+}
+
+.lyzyval-image-count {
+
+    position: absolute;
+
+    width: 1px;
+
+    height: 1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+}
+
+@media (max-width: 700px) {
+
+    .lyzyval-image-controls {
+
+        right: 8px;
+
+        left: 8px;
+
+    }
+
+    .lyzyval-image-arrow {
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 24px;
+
+    }
+
+}
+
+.lyzyval-art .lyzyval-butterfly {
+
+    position: absolute;
+
+    z-index: 2;
+
+    width: clamp(64px, 8vw, 84px);
+
+    height: clamp(64px, 8vw, 84px);
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+}
+
+.lyzyval-art .butterfly-top-left {
+
+    top: 8px;
+
+    left: 8px;
+
+}
+
+.lyzyval-art .butterfly-bottom-right {
+
+    right: 8px;
+
+    bottom: 8px;
+
+}
+
+.art:nth-child(2) { animation-delay: -1.2s; }
+.art:nth-child(3) { animation-delay: -2.4s; }
+.art:nth-child(4) { animation-delay: -.6s; }
+.art:nth-child(5) { animation-delay: -1.8s; }
+.art:nth-child(6) { animation-delay: -3s; }
+
+@keyframes art-float {
+
+    0%, 100% { transform: translateY(0); }
+
+    50% { transform: translateY(-10px); }
+
+}
+
+.art:hover {
+
+    animation: none;
+
+    transform: rotate(-2deg) scale(1.02);
+
+    border-color: white;
+
+    box-shadow: 5px 5px 0 var(--hotpink);
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .art {
+        animation: none;
+    }
+
+}
+
+.art-image {
+
+    aspect-ratio: 1;
+
+    position: relative;
+
+    background: #321927;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--lightpink);
+
+    font-size: 25px;
+
+    overflow: hidden;
+
+}
+
+.gallery .art-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background: url("borde 2.png") center / 100% 100% no-repeat;
+
+    pointer-events: none;
+
+}
+
+body.celestial-mode .gallery .art-image::after {
+
+    background-image: url("borde de lyz.gif");
+
+}
+
+.art-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.art p {
+
+    color: var(--lightpink);
+
+    font-size: 14px;
+
+}
+
+.music {
+
+    border: 3px solid var(--pink);
+
+    background: #21131c;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+
+    box-shadow: 6px 6px 0 #5b1c3b;
+
+}
+
+.playlist-story-title {
+
+    display: none;
+
+}
+
+body.lyzyval-focus-mode .playlist-story-title {
+
+    display: block;
+
+    padding: 5px 10px;
+
+    border: 1px solid rgba(192, 216, 226, .72);
+
+    background: rgba(20, 24, 42, .86);
+
+    color: #dce7f0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+}
+
+.album {
+
+    width: 100px;
+
+    height: 100px;
+
+    border: 2px solid white;
+
+    background:
+        radial-gradient(
+            circle,
+            var(--lightpink) 0 10%,
+            var(--pink) 11% 30%,
+            var(--purple) 31% 55%,
+            #291521 56%
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 35px;
+
+}
+
+.song {
+
+    color: var(--pink);
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+}
+
+.artist {
+
+    color: var(--lightpink);
+
+    margin-top: 5px;
+
+}
+
+.progress {
+
+    height: 5px;
+
+    background: #472434;
+
+    margin-top: 15px;
+
+}
+
+.progress-bar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: var(--pink);
+
+    transition: width .2s linear;
+
+}
+
+.controls {
+
+    margin-top: 15px;
+
+}
+
+.controls button {
+
+    background: var(--pink);
+
+    border: 2px solid white;
+
+    padding: 7px 14px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+}
+
+.controls button:hover {
+
+    background: var(--baby);
+
+}
+
+.links {
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 12px;
+
+}
+
+.guestbook-callout {
+
+    position: relative;
+
+}
+
+.guestbook-hint {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: calc(100% + 12px);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: var(--lightpink);
+
+    font-family: "Caveat Brush", cursive;
+
+    font-size: 18px;
+
+    line-height: 1.1;
+
+    white-space: nowrap;
+
+    transform: translateY(-50%);
+
+}
+
+.guestbook-arrow {
+
+    color: var(--hotpink);
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    animation: guestbook-point 1.4s ease-in-out infinite;
+
+}
+
+.guestbook-arrow-mobile {
+
+    display: none;
+
+}
+
+@keyframes guestbook-point {
+
+    0%, 100% { transform: translateX(1px); }
+
+    50% { transform: translateX(-4px); }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .guestbook-arrow {
+
+        animation: none;
+
+    }
+
+}
+
+.link-button {
+
+    display: block;
+
+    padding: 15px;
+
+    text-align: center;
+
+    border: 2px solid var(--pink);
+
+    background: #291521;
+
+    color: var(--lightpink);
+
+    font-weight: bold;
+
+    box-shadow: 3px 3px 0 #551532;
+
+}
+
+.link-button:hover {
+
+    background: var(--pink);
+
+    color: #24121b;
+
+}
+
+header,
+.box,
+.profile,
+.music,
+.link-button,
+.about-text,
+.title,
+.marquee,
+.lyzyval-story {
+
+    position: relative;
+
+}
+
+header::after,
+.box::after,
+.profile::after,
+.music::after,
+.link-button::after,
+.about-text::after,
+.title::after,
+.marquee::after,
+.lyzyval-story::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    border: 12px solid transparent;
+
+    border-image: url("bordess.png") 90 / 12px / 0 stretch;
+
+    filter: invert(1) sepia(.25) saturate(1.5) hue-rotate(155deg);
+
+    opacity: .78;
+
+}
+
+.album,
+.controls button,
+.tag,
+.counter {
+
+    position: relative;
+
+}
+
+.album::after,
+.controls button::after,
+.tag::after,
+.counter::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    border: 6px solid transparent;
+
+    border-image: url("bordess.png") 90 / 6px / 0 stretch;
+
+    filter: invert(1) sepia(.25) saturate(1.5) hue-rotate(155deg);
+
+    opacity: .78;
+
+}
+
+footer {
+
+    margin-top: 60px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    border-top: 3px solid var(--pink);
+
+    color: #a98298;
+
+}
+
+.footer-big {
+
+    color: var(--pink);
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+}
+
+.counter {
+
+    display: inline-block;
+
+    background: #090609;
+
+    color: var(--pink);
+
+    border: 1px solid var(--pink);
+
+    padding: 5px 12px;
+
+    margin-top: 10px;
+
+}
+
+@media(max-width:750px) {
+
+    .hero,
+    .about {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .gallery {
+
+        grid-template-columns: repeat(2,1fr);
+
+    }
+
+    .links {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .guestbook-hint {
+
+        top: calc(100% + 5px);
+
+        right: 0;
+
+        left: auto;
+
+        transform: none;
+
+    }
+
+    .guestbook-arrow-side {
+
+        display: none;
+
+    }
+
+    .guestbook-arrow-mobile {
+
+        display: inline-block;
+
+    }
+
+}
+
+@media(max-width:450px) {
+
+    .gallery {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .hero h1 {
+
+        font-size: 50px;
+
+    }
+
+}
+
+body {
+
+    transition: background-color 1s ease, color 1s ease;
+
+}
+
+body.celestial-mode {
+
+    --pink: #8270ad;
+    --hotpink: #8eafd2;
+    --lightpink: #c0d8e2;
+    --baby: #e0edf1;
+    --purple: #6f8fb8;
+    --black: #080d19;
+    --dark: #14182a;
+    --dark2: #202b43;
+    --white: #edf2fa;
+
+    background-color: var(--black);
+
+    background-image:
+        radial-gradient(ellipse at 50% 72%, rgba(65,133,157,.3), transparent 52%),
+        radial-gradient(ellipse at 50% 0%, rgba(130,112,173,.24), transparent 55%),
+        radial-gradient(var(--pink) 1px, transparent 1px),
+        radial-gradient(var(--purple) 1px, transparent 1px),
+        linear-gradient(180deg, #090d1b 0%, #11182c 45%, #122432 78%, #0a151e 100%);
+
+    background-size: 100% 100%, 100% 100%, 72px 91px, 118px 103px, 100% 100%;
+
+    background-attachment: fixed;
+
+    animation: none;
+
+}
+
+body.celestial-mode::before {
+
+    opacity: .68;
+
+    background-image:
+        radial-gradient(circle, rgba(237,242,250,.85) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(151,203,215,.7) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(155,143,196,.6) 0 1px, transparent 2px);
+
+    animation: drifting-sparkles 34s linear infinite, celestial-twinkle 7s ease-in-out infinite;
+
+}
+
+@keyframes celestial-twinkle {
+
+    0%, 100% { opacity: .12; }
+
+    50% { opacity: .48; }
+
+}
+
+body.celestial-mode.lyzyval-focus-mode::before {
+
+    animation:
+        lyzyval-sparkle-drift 42s ease-in-out infinite alternate,
+        lyzyval-sparkle-glow 8s ease-in-out infinite;
+
+}
+
+@keyframes lyzyval-sparkle-drift {
+
+    0% { transform: translate3d(-12px, -8px, 0); }
+
+    100% { transform: translate3d(12px, 8px, 0); }
+
+}
+
+@keyframes lyzyval-sparkle-glow {
+
+    0%, 100% { opacity: .34; }
+
+    50% { opacity: .66; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    body.celestial-mode.lyzyval-focus-mode::before {
+
+        animation: lyzyval-sparkle-glow 8s ease-in-out infinite;
+
+    }
+
+}
+
+body.celestial-mode::after {
+
+    z-index: 1;
+
+    opacity: .94;
+
+    background:
+        linear-gradient(90deg,
+            #070b17 0 3%, transparent 3.5% 7%, #0a1020 7.5% 9.5%, transparent 10% 17%,
+            #090f1e 17.5% 19%, transparent 19.5% 80%, #09101e 80.5% 82%, transparent 82.5% 90%,
+            #0a1020 90.5% 93%, transparent 93.5% 96%, #070b17 97% 100%),
+        linear-gradient(112deg, transparent 0 9%, rgba(7,11,23,.94) 9.4% 10.8%, transparent 11.2% 100%),
+        linear-gradient(68deg, transparent 0 87%, rgba(7,11,23,.9) 87.4% 88.8%, transparent 89.2% 100%),
+        radial-gradient(ellipse 24% 22% at 0% 0%, rgba(7,11,23,.98) 0 52%, transparent 100%),
+        radial-gradient(ellipse 24% 22% at 100% 0%, rgba(7,11,23,.98) 0 52%, transparent 100%),
+        linear-gradient(0deg, rgba(5,10,18,.82), transparent 32%);
+
+}
+
+body.celestial-mode header,
+body.celestial-mode .box,
+body.celestial-mode .marquee,
+body.celestial-mode .profile,
+body.celestial-mode .about-text,
+body.celestial-mode .tag,
+body.celestial-mode .art,
+body.celestial-mode .music,
+body.celestial-mode .link-button,
+body.celestial-mode .counter {
+
+    background-color: #151b2c;
+
+}
+
+body.celestial-mode .profile-picture,
+body.celestial-mode .art-image,
+body.celestial-mode .progress {
+
+    background-color: #202d42;
+
+}
+
+body.celestial-mode .profile .tag {
+
+    border-color: #c0d8e2;
+
+    background-color: #554a72;
+
+    color: #edf2fa;
+
+}
+
+body.celestial-mode header,
+body.celestial-mode .box,
+body.celestial-mode .profile,
+body.celestial-mode .about-text,
+body.celestial-mode .art,
+body.celestial-mode .music,
+body.celestial-mode .link-button,
+body.celestial-mode .counter,
+body.celestial-mode footer,
+body.celestial-mode .lyzyval-story {
+
+    border-color: rgba(169,193,218,.62);
+
+}
+
+body.celestial-mode header,
+body.celestial-mode .box,
+body.celestial-mode .profile,
+body.celestial-mode .about-text,
+body.celestial-mode .art,
+body.celestial-mode .music,
+body.celestial-mode .lyzyval-story {
+
+    border-style: double;
+
+    border-width: 4px;
+
+}
+
+body.celestial-mode .logo,
+body.celestial-mode .subtitle,
+body.celestial-mode .hero h1,
+body.celestial-mode .title,
+body.celestial-mode .lyzyval-story-title,
+body.celestial-mode .footer-big {
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+
+}
+
+body.celestial-mode .lyzyval-story-title.is-medieval-title {
+
+    font-family: "UnifrakturCook", serif;
+
+}
+
+body.celestial-mode .title {
+
+    border: 3px double #b6c9dc;
+
+    background: #22283d;
+
+    color: #d9e7ef;
+
+    box-shadow: 0 0 0 2px rgba(128,151,186,.24), 0 7px 22px rgba(3,7,18,.48);
+
+}
+
+body.celestial-mode nav a,
+body.celestial-mode .controls button,
+body.celestial-mode .link-button {
+
+    border: 2px double #a9c1da;
+
+    background-color: #20263a;
+
+    color: #d9e7ef;
+
+}
+
+body.celestial-mode .logo {
+
+    color: #d6e4ed;
+
+    text-shadow: 0 0 18px rgba(143,191,216,.3);
+
+}
+
+body.celestial-mode .marquee,
+body.celestial-mode .lyzyval-story {
+
+    border-color: rgba(169,193,218,.62);
+
+    background-image: linear-gradient(135deg, rgba(126,145,183,.1), transparent 58%);
+
+}
+
+body.celestial-mode .box,
+body.celestial-mode .art,
+body.celestial-mode .music,
+body.celestial-mode .link-button {
+
+    box-shadow: 0 10px 28px rgba(2,5,16,.32), inset 0 0 20px rgba(121,139,181,.04);
+
+}
+
+body.celestial-mode .about-text p,
+body.celestial-mode footer {
+
+    color: var(--lightpink);
+
+}
+
+body.celestial-mode nav a,
+body.celestial-mode .title,
+body.celestial-mode .controls button {
+
+    border-color: #c0d8e2;
+
+    color: #14182a;
+
+}
+
+body.celestial-mode .logo {
+
+    text-shadow: 0 0 18px rgba(143,191,216,.3);
+
+}
+
+body.celestial-mode header,
+body.celestial-mode .box,
+body.celestial-mode .art,
+body.celestial-mode .music,
+body.celestial-mode .link-button {
+
+    box-shadow: 5px 5px 0 #202b43;
+
+}
+
+body.celestial-mode .lyzyval-story {
+
+    background-color: #151b2c;
+
+}
+
+body.celestial-mode .lyzyval-art .art-image {
+
+    box-shadow: 0 0 0 3px var(--white), 0 0 0 6px #080d19;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="floating-gifs" aria-hidden="true">
+
+    <div class="default-gifs">
+
+        <img class="floating-gif default-owo" src="owo.gif" alt="">
+
+        <img class="floating-gif default-mariposa-uno" src="mariposa 1.gif" alt="">
+
+        <img class="floating-gif default-mariposa-dos" src="mariposa 2.gif" alt="">
+
+        <img class="floating-gif default-estrellitas" src="estrellitas 2.gif" alt="">
+
+        <img class="floating-gif default-fluttershy" src="fluttershy.gif" alt="Fluttershy">
+
+        <img class="floating-gif default-corazoncito" src="corazoncito.gif" alt="Corazoncito">
+
+        <img class="floating-gif draggable-gif default-uzi" src="uzi plush.gif" alt="UZI" draggable="false">
+
+    </div>
+
+    <div class="celestial-gifs">
+
+        <img class="floating-gif floating-butterfly" src="MARIPOSA BLANCA (1).gif" alt="">
+
+        <img class="floating-gif floating-stars-lyz" src="estrellitas lyz.png" alt="">
+
+        <img class="floating-gif floating-stars-liz" src="estrellitas liz.png" alt="">
+
+        <img class="floating-gif floating-aaa-one" src="aaaaa (1).gif" alt="">
+
+        <img class="floating-gif floating-aaa-two" src="aaaaa (2).gif" alt="">
+
+        <img class="floating-gif floating-focus-image floating-focus-lyz" src="Lyz-floating.png" alt="">
+
+        <img class="floating-gif floating-focus-image floating-focus-val" src="val-floating.png" alt="">
+
+    </div>
+
+</div>
+
+<div class="container">
+
+<div class="lyzyval-mist" aria-hidden="true"></div>
+
+<div class="lyzyval-petals" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="lyzyval-corner-branches" aria-hidden="true">
+    <svg class="lyzyval-branch-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+            <g id="lyzyval-branch-art" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M-12 8 C28 21 40 43 50 70 C61 100 80 112 97 140 C113 168 141 187 176 212" stroke="#203b45" stroke-width="10"/>
+                <path d="M-12 8 C28 21 40 43 50 70 C61 100 80 112 97 140 C113 168 141 187 176 212" stroke="#80a9a8" stroke-width="2.2" opacity=".82"/>
+                <path d="M37 45 C21 29 22 17 26 8 M40 48 C55 31 69 30 83 35 M55 82 C39 73 31 62 32 49 M64 93 C80 76 95 75 109 80 M88 126 C72 115 65 103 68 91 M100 143 C120 128 137 130 151 138 M124 173 C113 159 111 146 116 134 M143 187 C158 168 174 166 190 171" stroke="#709a94" stroke-width="4"/>
+                <path d="M43 48 C20 39 13 20 27 13 C42 7 51 22 41 29 C35 33 28 27 33 21 M78 105 C104 91 122 99 117 115 C112 130 94 126 98 113 C101 106 109 109 106 116 M132 170 C154 147 179 152 173 170 C168 185 150 181 155 169" stroke="#9bbcb4" stroke-width="3.2"/>
+                <path d="M23 33 C9 25 7 14 10 5 C25 9 32 20 23 33Z M47 43 C48 27 59 19 70 19 C68 34 59 43 47 43Z M34 69 C19 67 12 57 12 47 C27 47 37 56 34 69Z M66 89 C67 73 78 65 90 65 C88 80 78 89 66 89Z M70 110 C54 108 47 97 48 87 C63 88 73 97 70 110Z M103 138 C104 122 116 114 128 115 C124 130 115 138 103 138Z M118 162 C102 158 96 147 99 137 C114 139 122 149 118 162Z M150 181 C151 165 163 156 175 157 C172 172 163 181 150 181Z" fill="#355b57" stroke="#9bbcb4" stroke-width="1.8"/>
+                <path d="M15 21 C20 24 23 27 23 31 M53 34 C59 30 64 27 69 25 M18 56 C24 59 29 62 33 67 M73 78 C79 74 84 70 88 69 M54 97 C60 101 65 105 69 108 M111 126 C117 122 122 119 126 119 M104 147 C110 151 114 155 117 160 M158 171 C164 167 169 163 173 161" stroke="#c1d6cb" stroke-width="1.2" opacity=".7"/>
+            </g>
+        </defs>
+    </svg>
+    <svg class="lyzyval-corner-branch top-right" viewBox="0 0 220 220" aria-hidden="true"><use href="#lyzyval-branch-art"/></svg>
+    <svg class="lyzyval-corner-branch bottom-left" viewBox="0 0 220 220" aria-hidden="true"><use href="#lyzyval-branch-art"/></svg>
+</div>
+
+<div class="lyzyval-banners" aria-hidden="true">
+    <span class="lyzyval-banner lyzyval-banner-left"></span>
+    <span class="lyzyval-banner lyzyval-banner-right"></span>
+</div>
+
+<header>
+
+    <div class="subtitle">
+        ✦ BLOG PERSONAL ✦
+    </div>
+
+    <div class="logo">
+        EL CLOSET DE GOTITA
+    </div>
+
+    <div class="subtitle">
+        ★ BIENVENIDOS A LA MENTE DE LA GOTITA ★
+    </div>
+
+    <nav>
+
+        <a href="#home">INICIO</a>
+
+        <a href="#about">SOBRE MÍ</a>
+
+        <a href="#art">ARTE</a>
+
+        <a href="#music">MÚSICA</a>
+
+        <a href="#links">REDES</a>
+
+    </nav>
+
+    <img class="floating-skull" src="craneo.png" alt="">
+
+</header>
+
+
+<div class="marquee">
+
+<span>
+<span id="site-marquee-text">
+
+★ VIVA MELANIE MARTINEZ★
+✦ UZI DOORMAN SOY TAN YO ✦
+🦋 TENGO SUEÑO 🦋
+★ AQUI SUBO MIS COSITAS ★
+♡ MULTIFANDOM  ♡
+
+</span>
+
+</div>
+
+
+<section id="home" class="hero">
+
+
+<div class="box">
+
+    <div class="punk">
+        ★ Bienvenidos a★
+    </div>
+
+    <h1>
+        EL CLOSET DE<br>
+        <span>GOETIA >w< </span>
+    </h1>
+
+    <p>
+        Un pequeño espacio para mis dibujos,
+        proyectos, personajes, pensamientos y
+        todas esas cosas que probablemente
+        debería estar haciendo en vez de dormir.
+    </p>
+
+    <p>
+        <span class="punk">
+            ARTISTA / ILUSTRADORA / OC DAÑADA / CHICA RARA
+        </span>
+    </p>
+
+</div>
+
+
+<div class="box sticker">
+
+    <div class="moon">
+        <img src="YDEAI (1).png" alt="Ydeai">
+    </div>
+
+</div>
+
+
+</section>
+
+
+<section id="about">
+
+<div class="title">
+    ★ SOBRE MÍ★
+</div>
+
+
+<div class="about">
+
+
+<div class="profile">
+
+    <div class="profile-picture">
+
+        <img src="GOTITA rawr.jpeg"
+             alt="Me fr">
+
+    </div>
+
+    <div class="tags">
+        <span class="tag">21 años</span>
+        <span class="tag">Multifandom</span>
+    </div>
+
+</div>
+
+
+<div class="about-text">
+
+    <p class="punk">
+        HOLAAA SOY GOTITA >w< :꣓
+    </p>
+
+    <p>
+        Soy estudiante de Arte Digital y me gusta
+        dibujar personajes, crear mundos y hacer
+        cosas que mezclen lo bonito con lo raro.
+    </p>
+
+    <p>
+        Soy multifandom, me gustan muchas cosas y hablar de muchas cosas. Mi serie favorita es Murder Drones y me gusta mucho todo lo alternativo, mi cantante favorita es Melanie Martinez y HIM.También me gusta todo lo que tenga que ver con lo gótico y medieval. Este espacio esta dedicado a ser como un blogsito para que conozcan mas de mi. :D
+    </p>
+
+    <p class="quote">
+        "Never a frown... with Golden Brown"
+    </p>
+
+
+    <div class="tags">
+
+        <span class="tag">᭪༊ARTE DIGITAL</span>
+        <span class="tag">⋆˙⟡EXISTIR</span>
+        <span class="tag">˚˖𓍢ִ໋❀MURDER DRONES</span>
+        <span class="tag">𓆩✧𓆪GAMING</span>
+        <span class="tag">𝄞⨾𓍢ִ໋2000s</span>
+        <span class="tag"> .⋆♱GOTICA</span>
+        <span class="tag"> >ᴗ< RAWR >-O</span>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<section id="art">
+
+<div class="title">
+    ✦ MIS DIBUJITOS >O&lt; ✦
+</div>
+
+<div class="gallery">
+
+
+<div class="art">
+
+    <div class="art-image">
+
+        <img src="yunoo.png"
+             alt="Mi dibujo">
+
+    </div>
+
+    <p>
+        🦋 She´s so me fr 
+    </p>
+
+</div>
+
+
+<div class="art">
+
+    <div class="art-image">
+
+        <img src="NURSE.png"
+             alt="Mi dibujo">
+
+    </div>
+
+    <p>
+        Hospital de animalucos
+    </p>
+
+</div>
+
+
+<div class="art">
+
+    <div class="art-image">
+
+        <img src="UZI.png"
+             alt="Mi dibujo">
+
+    </div>
+
+    <p>
+        ★ Fight till im good enough
+    </p>
+
+</div>
+
+
+<div class="art">
+
+    <div class="art-image">
+
+        <img src="PIERROOT.jpg"
+             alt="Mi dibujo">
+
+    </div>
+
+    <p>
+        ♡ Mi viejo
+    </p>
+
+</div>
+
+
+<div class="art">
+
+    <div class="art-image">
+
+        <img src="SARVV (2).png"
+             alt="Neapolitan icecream">
+
+    </div>
+
+    <p>
+        Helado napolitano
+    </p>
+
+</div>
+
+
+<div class="art">
+
+    <div class="art-image">
+
+        <img src="COLLAB.png"
+             alt="Mi dibujo">
+
+    </div>
+
+    <p>
+        Collab con @Vivenebri 
+    </p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="lyzyval">
+
+<div class="title">
+    ✦ LYZETH Y VALDRIC ✦
+</div>
+
+<div class="art lyzyval-art">
+
+    <div class="lyzyval-stage">
+
+    <div class="lyzyval-focus-title">Lyz y Valdric</div>
+
+    <div class="art-image" role="button" tabindex="0" aria-label="Expandir la ilustración y mostrar su historia" aria-expanded="false" aria-controls="lyzyval-story">
+
+        <img id="lyzyval-main-image" src="lyzyval.png"
+               alt="Ilustración de Lyzeth y Valdric">
+
+        <img class="lyzyval-butterfly butterfly-top-left" src="MARIPOSA BLANCA (1).gif" alt="" aria-hidden="true">
+
+        <img class="lyzyval-butterfly butterfly-bottom-right" src="MARIPOSA BLANCA (1).gif" alt="" aria-hidden="true">
+
+    </div>
+
+    <div class="lyzyval-image-controls" role="group" aria-label="Cambiar ilustración">
+
+        <button class="lyzyval-image-arrow" id="lyzyval-previous-image" type="button" aria-label="Ilustración anterior" aria-controls="lyzyval-main-image" title="Ilustración anterior">‹</button>
+
+        <span class="lyzyval-image-count" id="lyzyval-image-count" aria-live="polite">1 / 2</span>
+
+        <button class="lyzyval-image-arrow" id="lyzyval-next-image" type="button" aria-label="Siguiente ilustración" aria-controls="lyzyval-main-image" title="Siguiente ilustración">›</button>
+
+    </div>
+
+    </div>
+
+    <div class="lyzyval-story" id="lyzyval-story" aria-hidden="true">
+
+        <h2 class="lyzyval-story-title">✧ It’s them ✧</h2>
+
+        <p>
+            En un reino donde la magia está prohibida, Lyzeth, una princesa, aún no sabe que un poder secreto vive dentro de ella. Valdric es un espíritu que tomó la forma de un bufón y se convirtió en su amor más inesperado: una relación que deben mantener en secreto. Lejos del palacio, en el rincón del bosque donde suelen encontrarse, Lyz le lleva una tarta por su cumpleaños. Entre secretos y miradas cómplices, ese pequeño festejo se vuelve uno de sus momentos más preciados.
+        </p>
+
+        <div class="lyzyval-story-flourish" aria-hidden="true">♡ ✧ ♡</div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ★ MUSIC
+===================================================== -->
+
+<section id="music">
+
+<div class="title" id="music-title">
+    ♫ Mi Música >w< ♫
+</div>
+
+
+<div class="music">
+
+<div class="playlist-story-title">A princess requiem</div>
+
+<audio
+    id="audio"
+    autoplay
+    preload="auto"
+    style="display:none">
+
+    <source
+        src="MURDER DRONES - FIGHT TIL' I'M GOOD ENOUGH (ft. The Living Tombstone) [Official Music Video].mp3"
+        type="audio/mpeg">
+
+</audio>
+
+<div class="music-embed">
+
+<iframe
+    id="spotify-playlist"
+    data-testid="embed-iframe"
+    style="border-radius:12px"
+    src="https://open.spotify.com/embed/playlist/4ozO57jFjVAkssXB50eWN2?utm_source=generator&theme=0&si=fe61757a89f54c22"
+    width="100%"
+    height="152"
+    frameBorder="0"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+</iframe>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="links">
+
+<div class="title">
+    ✦ Mis Redes Sociales :D ✦
+</div>
+
+
+<div class="links">
+
+
+<a
+    class="link-button"
+    href="https://www.instagram.com/goetiax17/"
+    target="_blank">
+
+    📷 INSTAGRAM
+
+</a>
+
+
+<a
+    class="link-button"
+    href="https://open.spotify.com/user/brpwmgwgmgu6ukd4gp1onysq5"
+    target="_blank">
+
+    🎵 SPOTIFY
+
+</a>
+
+
+<a
+    class="link-button"
+    href="https://www.tiktok.com/@goetiax17"
+    target="_blank">
+
+    ★ TIKTOK
+
+</a>
+
+
+<a
+    class="link-button"
+    href="https://x.com/Goetiax17"
+    target="_blank">
+
+    ✦ TWITTER / X
+
+</a>
+
+
+<a
+    class="link-button"
+    href="https://canva.link/ukyr7xqdcxzo4hb"
+    target="_blank"
+    rel="noopener noreferrer">
+
+    🦋 MY ART
+
+</a>
+
+
+<div class="guestbook-callout">
+
+    <div class="guestbook-hint">
+        <span class="guestbook-arrow guestbook-arrow-side" aria-hidden="true">←</span>
+        <span>firma mi lienzo :D</span>
+        <span class="guestbook-arrow guestbook-arrow-mobile" aria-hidden="true">↑</span>
+    </div>
+
+    <a
+        class="link-button"
+        href="https://magma.com/d/eTBVnfySOR"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        ♡ GUESTBOOK
+
+    </a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-big">✦ GOETIA ✦</div>
+
+    <div>♡ Hecho con amor, brillo y un poco de caos ♡</div>
+
+    <div>© 2026 Goetia Closet</div>
+
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+     ★ JAVASCRIPT DE MÚSICA
+===================================================== -->
+
+<script>
+
+const audio =
+    document.getElementById("audio");
+
+const tracks = [
+    "MURDER DRONES - FIGHT TIL' I'M GOOD ENOUGH (ft. The Living Tombstone) [Official Music Video].mp3",
+    "Roy Bee - Kiss Me Again (Instrumental) (1).mp3",
+    "OFFICIAL INSTRUMENTAL - Psycho Teddy.mp3"
+];
+
+let currentTrack = 0;
+let isLyzyvalFocusTrackPlaying = false;
+let focusTrackRequest = 0;
+
+const lyzyvalFocusTracks = [
+    { src: "Golden Brown - Stranglers ft Dakijko (Female version).mp3", startAt: 0 },
+    { src: "It's Her.mp3", startAt: 10 }
+];
+
+function playLyzyvalFocusTrack() {
+
+    const track = lyzyvalFocusTracks[lyzyvalImageIndex];
+    const request = ++focusTrackRequest;
+
+    isLyzyvalFocusTrackPlaying = true;
+    audio.pause();
+    audio.addEventListener("loadedmetadata", function() {
+
+        if (request !== focusTrackRequest) {
+            return;
+        }
+
+        audio.currentTime = track.startAt;
+
+    }, { once: true });
+
+    audio.src = track.src;
+    audio.load();
+    audio.play().catch(function() {});
+
+}
+
+function playRandomTrack() {
+
+    let nextTrack = Math.floor(Math.random() * tracks.length);
+
+    if (tracks.length > 1 && nextTrack === currentTrack) {
+        nextTrack = (nextTrack + 1 + Math.floor(Math.random() * (tracks.length - 1))) % tracks.length;
+    }
+
+    currentTrack = nextTrack;
+    audio.pause();
+    audio.src = tracks[currentTrack];
+    audio.volume = /Psycho Teddy/i.test(tracks[currentTrack]) ? 0.35 : 0.75;
+    audio.load();
+    audio.play().catch(function() {});
+
+}
+
+audio.addEventListener("ended", function() {
+
+    if (isLyzyvalFocusTrackPlaying) {
+        return;
+    }
+
+    playRandomTrack();
+
+});
+
+window.addEventListener("load", function() {
+
+    playRandomTrack();
+
+});
+
+function startLocalMusic() {
+
+    if (audio.paused && !isLyzyvalFocusTrackPlaying) {
+        playRandomTrack();
+    }
+
+}
+
+window.addEventListener("pointerdown", startLocalMusic, { once: true });
+window.addEventListener("keydown", startLocalMusic, { once: true });
+
+/* ★ PLAY */
+
+function playMusic() {
+
+    audio.play();
+
+}
+
+
+/* ★ PAUSE */
+
+function pauseMusic() {
+
+    audio.pause();
+
+}
+
+const lyzyvalArtwork =
+    document.querySelector(".lyzyval-art .art-image");
+
+const lyzyvalMainImage =
+    document.getElementById("lyzyval-main-image");
+
+const lyzyvalImageCount =
+    document.getElementById("lyzyval-image-count");
+
+const marqueeText =
+    document.getElementById("site-marquee-text");
+
+const originalMarqueeText =
+    marqueeText.textContent.trim().replace(/\s+/g, " ");
+
+const lyzyvalFocusMarqueeText =
+    "Never a frown with Golden Brown";
+
+const lyzyvalImages = [
+    { src: "lyzyval.png", alt: "Ilustración de Lyzeth y Valdric" },
+    { src: "uy liz.png", alt: "Ilustración alternativa de Lyzeth y Valdric" }
+];
+
+let lyzyvalImageIndex = 0;
+
+function changeLyzyvalImage(direction) {
+
+    lyzyvalImageIndex = (lyzyvalImageIndex + direction + lyzyvalImages.length) % lyzyvalImages.length;
+
+    const image = lyzyvalImages[lyzyvalImageIndex];
+
+    lyzyvalMainImage.src = image.src;
+    lyzyvalMainImage.alt = image.alt;
+    lyzyvalImageCount.textContent = `${lyzyvalImageIndex + 1} / ${lyzyvalImages.length}`;
+    lyzyvalStoryText.textContent = lyzyvalStories[lyzyvalImageIndex];
+    lyzyvalStoryTitle.textContent = lyzyvalStoryTitles[lyzyvalImageIndex];
+    marqueeText.textContent = lyzyvalFocusMarqueeText;
+    marqueeText.classList.add("is-medieval-marquee");
+
+    if (document.body.classList.contains("lyzyval-focus-mode")) {
+        musicTitle.textContent = lyzyvalImageIndex === 1 ? "♫ It's Her ♫" : "♫ Mi Música >w< ♫";
+        playLyzyvalFocusTrack();
+    }
+
+}
+
+const lyzyvalCard =
+    document.querySelector(".lyzyval-art");
+
+const lyzyvalStory =
+    document.getElementById("lyzyval-story");
+
+const lyzyvalStoryText =
+    lyzyvalStory.querySelector("p");
+
+const lyzyvalStoryTitle =
+    lyzyvalStory.querySelector(".lyzyval-story-title");
+
+const lyzyvalStoryTitles = [
+    "✧ It’s them ✧",
+    "✧ Entre risas y coronas ✧"
+];
+
+const lyzyvalStories = [
+    lyzyvalStoryText.textContent.trim(),
+    "Lyzeth es una doncella y princesa, criada entre salones de mármol, juramentos antiguos y el peso de una corona que todavía no lleva. Valdric llegó al reino como su bufón personal, encargado de arrancarle sonrisas a una joven rodeada de deberes; bajo sus bromas, sin embargo, guarda una magia que la corte preferiría no nombrar. Cuando las lámparas del palacio se apagan, ambos escapan al bosque encantado: allí Lyzeth puede ser solo Lyzeth, y Valdric, por un instante, deja caer la máscara del bufón. Los separan sus rangos, sus mundos y hasta sus poderes sobrenaturales, pero cada encuentro los acerca a una verdad peligrosa: incluso en un reino que no entendería su amor, ellos están escribiendo su propio cuento."
+];
+
+const spotifyPlaylist =
+    document.getElementById("spotify-playlist");
+
+const musicTitle =
+    document.getElementById("music-title");
+
+const originalSpotifyPlaylist = spotifyPlaylist.src;
+
+const celestialSpotifyPlaylist =
+    "https://open.spotify.com/embed/playlist/1NNWDPKTQvU2iYMe1D1nE1?utm_source=generator&si=1ae7342ed4d24506";
+
+let lyzyvalScrollPosition = { x: 0, y: 0 };
+
+function toggleLyzyvalStory() {
+
+    const isExpanded = lyzyvalCard.classList.toggle("is-expanded");
+
+    if (isExpanded) {
+        lyzyvalScrollPosition = { x: window.scrollX, y: window.scrollY };
+    }
+
+    lyzyvalArtwork.setAttribute("aria-expanded", String(isExpanded));
+    lyzyvalStory.setAttribute("aria-hidden", String(!isExpanded));
+    document.body.classList.toggle("celestial-mode", isExpanded);
+    document.body.classList.toggle("lyzyval-focus-mode", isExpanded);
+    marqueeText.textContent = isExpanded ? lyzyvalFocusMarqueeText : originalMarqueeText;
+    marqueeText.classList.toggle("is-medieval-marquee", isExpanded);
+    spotifyPlaylist.src = isExpanded ? celestialSpotifyPlaylist : originalSpotifyPlaylist;
+    musicTitle.textContent = isExpanded && lyzyvalImageIndex === 1 ? "♫ It's Her ♫" : "♫ Mi Música >w< ♫";
+
+    if (!isExpanded) {
+        requestAnimationFrame(() => {
+            window.scrollTo(lyzyvalScrollPosition.x, lyzyvalScrollPosition.y);
+        });
+    }
+
+    if (isExpanded) {
+        playLyzyvalFocusTrack();
+    } else if (isLyzyvalFocusTrackPlaying) {
+        isLyzyvalFocusTrackPlaying = false;
+        focusTrackRequest++;
+        playRandomTrack();
+    }
+
+}
+
+lyzyvalArtwork.addEventListener("click", toggleLyzyvalStory);
+
+document.getElementById("lyzyval-previous-image").addEventListener("click", function() {
+
+    changeLyzyvalImage(-1);
+
+});
+
+document.getElementById("lyzyval-next-image").addEventListener("click", function() {
+
+    changeLyzyvalImage(1);
+
+});
+
+lyzyvalArtwork.addEventListener("keydown", function(event) {
+
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        changeLyzyvalImage(event.key === "ArrowLeft" ? -1 : 1);
+        return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleLyzyvalStory();
+    }
+
+});
+
+
+const draggableUzi = document.querySelector(".default-uzi");
+
+if (draggableUzi) {
+
+    let isDraggingUzi = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let movedEnoughToDrag = false;
+
+    draggableUzi.addEventListener("pointerdown", function(event) {
+
+        isDraggingUzi = true;
+        movedEnoughToDrag = false;
+        pointerStartX = event.clientX;
+        pointerStartY = event.clientY;
+        draggableUzi.classList.add("is-dragging");
+
+        const rect = draggableUzi.getBoundingClientRect();
+        offsetX = event.clientX - rect.left;
+        offsetY = event.clientY - rect.top;
+
+        draggableUzi.setPointerCapture(event.pointerId);
+        event.preventDefault();
+
+    });
+
+    document.addEventListener("pointermove", function(event) {
+
+        if (!isDraggingUzi) return;
+
+        const distance = Math.hypot(event.clientX - pointerStartX, event.clientY - pointerStartY);
+
+        if (distance > 8) {
+            movedEnoughToDrag = true;
+        }
+
+        const parentRect = draggableUzi.parentElement.getBoundingClientRect();
+        const maxLeft = parentRect.width - draggableUzi.offsetWidth;
+        const maxTop = parentRect.height - draggableUzi.offsetHeight;
+
+        let x = event.clientX - parentRect.left - offsetX;
+        let y = event.clientY - parentRect.top - offsetY;
+
+        x = Math.min(Math.max(x, 0), maxLeft);
+        y = Math.min(Math.max(y, 0), maxTop);
+
+        draggableUzi.style.left = x + "px";
+        draggableUzi.style.top = y + "px";
+
+    });
+
+    document.addEventListener("pointerup", function() {
+
+        isDraggingUzi = false;
+        movedEnoughToDrag = false;
+        draggableUzi.classList.remove("is-dragging");
+
+    });
+
+    document.addEventListener("pointercancel", function() {
+
+        isDraggingUzi = false;
+        movedEnoughToDrag = false;
+        draggableUzi.classList.remove("is-dragging");
+
+    });
+
+}
+
+</script>
+
+
+</body>
+
+</html>
