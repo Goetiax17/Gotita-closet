@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>★ Gotita Closet ★</title>
-<link rel="icon" type="image/gif" href="iconio craneo.gif">
+<link rel="icon" type="image/png" href="favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -405,6 +405,10 @@ body.lyzyval-focus-mode .lyzyval-corner-branches {
 
     cursor: grabbing;
 
+    animation: none !important;
+
+    z-index: 8;
+
 }
 
 .default-gifs,
@@ -594,15 +598,54 @@ body.lyzyval-focus-mode .container #music {
 
 }
 
+body.lyzyval-focus-mode {
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+
+}
+
+body.lyzyval-focus-mode::-webkit-scrollbar,
+html:has(body.lyzyval-focus-mode)::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+html:has(body.lyzyval-focus-mode) {
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+
+}
+
+body.lyzyval-focus-mode,
+body.lyzyval-focus-mode * {
+
+    cursor: url("butterfly-cursor.svg") 7 7, url("cursor liz-small.png") 43 0, auto;
+
+}
+
+body.lyzyval-focus-mode .floating-gif.draggable-gif,
+body.lyzyval-focus-mode .floating-gif.draggable-gif.is-dragging {
+
+    cursor: url("butterfly-cursor.svg") 7 7, url("cursor liz-small.png") 43 0, auto;
+
+}
+
+body.lyzyval-focus-mode .container {
+
+    z-index: 24;
+
+}
+
 body.lyzyval-focus-mode #lyzyval {
 
-    position: fixed;
+    position: relative;
 
-    top: 50%;
-
-    left: 50%;
-
-    transform: translate(-50%, -50%);
+    margin: 40px auto;
 
     width: min(820px, 82vw);
 
@@ -634,7 +677,13 @@ body.lyzyval-focus-mode .music {
 
 body.lyzyval-focus-mode .floating-gifs {
 
-    z-index: 30;
+    z-index: 23;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banners {
+
+    position: absolute;
 
 }
 
@@ -672,7 +721,7 @@ body.lyzyval-focus-mode .floating-gifs {
 
 }
 
-body:not(.celestial-mode) .default-gifs .floating-gif:not(.draggable-gif) {
+body:not(.celestial-mode) .default-gifs .floating-gif {
 
     animation-name: home-space-drift;
 
@@ -1379,7 +1428,13 @@ section {
 #lyzyval,
 #lyzyval * {
 
-    cursor: url("cursor liz-small.png") 43 0, auto;
+    cursor: url("butterfly-cursor.svg") 7 7, url("cursor liz-small.png") 43 0, auto;
+
+}
+
+#lyzyval .lyzyval-image-arrow {
+
+    cursor: pointer;
 
 }
 
@@ -1405,7 +1460,7 @@ section {
 
 body.lyzyval-focus-mode .lyzyval-banners {
 
-    position: fixed;
+    position: absolute;
 
     inset: 0;
 
@@ -1491,11 +1546,39 @@ body.lyzyval-focus-mode .lyzyval-banner::before {
 
 }
 
+body.lyzyval-focus-mode .lyzyval-banner-moon {
+
+    position: absolute;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    pointer-events: none;
+
+}
+
+body.lyzyval-focus-mode .lyzyval-banner-moon {
+
+    top: 23px;
+
+    color: #d6edf4;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: clamp(20px, 2vw, 28px);
+
+    text-shadow: 0 0 11px rgba(168, 220, 230, .72);
+
+}
+
 body.lyzyval-focus-mode .lyzyval-banner::after {
 
     position: absolute;
 
-    top: 21px;
+    top: 106px;
 
     left: 0;
 
@@ -1507,7 +1590,7 @@ body.lyzyval-focus-mode .lyzyval-banner::after {
 
     font-family: "Cormorant Garamond", Georgia, serif;
 
-    font-size: 23px;
+    font-size: 17px;
 
     text-align: center;
 
@@ -1551,9 +1634,17 @@ body.lyzyval-focus-mode .lyzyval-banner::after {
 
     body.lyzyval-focus-mode .lyzyval-banner::after {
 
-        top: 14px;
+        top: 88px;
 
         font-size: 19px;
+
+    }
+
+    body.lyzyval-focus-mode .lyzyval-banner-moon {
+
+        top: 18px;
+
+        font-size: 17px;
 
     }
 
@@ -2066,6 +2157,20 @@ body.celestial-mode .gallery .art-image::after {
 
 }
 
+.music-embed iframe {
+
+    display: block;
+
+    width: 100% !important;
+
+    height: 152px !important;
+
+    border: 0;
+
+    border-radius: 12px;
+
+}
+
 .playlist-story-title {
 
     display: none;
@@ -2507,6 +2612,12 @@ body.celestial-mode {
 
 }
 
+body.celestial-mode.lyzyval-focus-mode {
+
+    background-attachment: scroll;
+
+}
+
 body.celestial-mode::before {
 
     opacity: .68;
@@ -2840,8 +2951,12 @@ body.celestial-mode .lyzyval-art .art-image {
 </div>
 
 <div class="lyzyval-banners" aria-hidden="true">
-    <span class="lyzyval-banner lyzyval-banner-left"></span>
-    <span class="lyzyval-banner lyzyval-banner-right"></span>
+    <span class="lyzyval-banner lyzyval-banner-left">
+        <span class="lyzyval-banner-moon">☾</span>
+    </span>
+    <span class="lyzyval-banner lyzyval-banner-right">
+        <span class="lyzyval-banner-moon">☾</span>
+    </span>
 </div>
 
 <header>
@@ -3186,20 +3301,21 @@ body.celestial-mode .lyzyval-art .art-image {
 
 </audio>
 
+<audio
+    id="lyzyval-audio"
+    preload="auto"
+    style="display:none">
+
+</audio>
+
 <div class="music-embed">
 
-<iframe
+<div
     id="spotify-playlist"
     data-testid="embed-iframe"
-    style="border-radius:12px"
-    src="https://open.spotify.com/embed/playlist/4ozO57jFjVAkssXB50eWN2?utm_source=generator&theme=0&si=fe61757a89f54c22"
-    width="100%"
-    height="152"
-    frameBorder="0"
-    allowfullscreen=""
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy">
-</iframe>
+    aria-label="Reproductor de Spotify"
+    style="width:100%;height:152px;border-radius:12px">
+</div>
 
 </div>
 
@@ -3264,7 +3380,7 @@ body.celestial-mode .lyzyval-art .art-image {
     target="_blank"
     rel="noopener noreferrer">
 
-    🦋 MY ART
+    📰 PERIÓDICO
 
 </a>
 
@@ -3318,6 +3434,9 @@ body.celestial-mode .lyzyval-art .art-image {
 const audio =
     document.getElementById("audio");
 
+const lyzyvalAudio =
+    document.getElementById("lyzyval-audio");
+
 const tracks = [
     { src: "MURDER DRONES - FIGHT TIL' I'M GOOD ENOUGH (ft. The Living Tombstone) [Official Music Video].mp3" },
     { src: "Roy Bee - Kiss Me Again (Instrumental) (1).mp3" },
@@ -3328,36 +3447,116 @@ const tracks = [
 let currentTrack = -1;
 let isLyzyvalFocusTrackPlaying = false;
 let focusTrackRequest = 0;
+let spotifyIsPlaying = false;
+let localPlayerPausedForSpotify = null;
+let activeAudioFade = null;
+const audioTargetVolumes = new WeakMap();
+
+function setAudioTargetVolume(player, volume) {
+
+    audioTargetVolumes.set(player, volume);
+    player.volume = volume;
+
+}
+
+function fadeAudioVolume(player, targetVolume, duration, onComplete) {
+
+    if (activeAudioFade) {
+        cancelAnimationFrame(activeAudioFade.frame);
+    }
+
+    const fade = {
+        frame: 0
+    };
+    const initialVolume = player.volume;
+    const startTime = performance.now();
+    activeAudioFade = fade;
+
+    function updateVolume(now) {
+
+        if (activeAudioFade !== fade) {
+            return;
+        }
+
+        const progress = Math.min((now - startTime) / duration, 1);
+        player.volume = initialVolume + (targetVolume - initialVolume) * progress;
+
+        if (progress < 1) {
+            fade.frame = requestAnimationFrame(updateVolume);
+            return;
+        }
+
+        activeAudioFade = null;
+        if (onComplete) {
+            onComplete();
+        }
+
+    }
+
+    fade.frame = requestAnimationFrame(updateVolume);
+
+}
+
+function requestAudioPlayback(player, onStarted) {
+
+    if (spotifyIsPlaying) {
+        return;
+    }
+
+    player.play().then(function() {
+        if (onStarted) {
+            onStarted();
+        }
+    }).catch(function(error) {
+        if (error.name === "NotAllowedError") {
+            console.warn("El navegador bloqueó el autoplay con sonido. Revisa los permisos de reproducción automática de este sitio.");
+            return;
+        }
+
+        console.error("No se pudo reproducir la música:", error);
+    });
+
+}
 
 const lyzyvalFocusTracks = [
     { src: "Golden Brown - Stranglers ft Dakijko (Female version).mp3", startAt: 0 },
-    { src: "It's Her.mp3", startAt: 10 }
+    { src: "It's Her.mp3", startAt: 0 }
 ];
 
-function playLyzyvalFocusTrack() {
+function playLyzyvalFocusTrack(onStarted) {
+
+    if (spotifyIsPlaying) {
+        return;
+    }
 
     const track = lyzyvalFocusTracks[lyzyvalImageIndex];
     const request = ++focusTrackRequest;
 
     isLyzyvalFocusTrackPlaying = true;
     audio.pause();
-    audio.addEventListener("loadedmetadata", function() {
+    setAudioTargetVolume(lyzyvalAudio, audioTargetVolumes.get(audio) ?? audio.volume);
+    lyzyvalAudio.pause();
+    lyzyvalAudio.addEventListener("loadedmetadata", function() {
 
         if (request !== focusTrackRequest) {
             return;
         }
 
-        audio.currentTime = track.startAt;
+        lyzyvalAudio.currentTime = track.startAt;
 
     }, { once: true });
 
-    audio.src = track.src;
-    audio.load();
-    audio.play().catch(function() {});
+    lyzyvalAudio.src = track.src;
+    lyzyvalAudio.load();
+    requestAudioPlayback(lyzyvalAudio, onStarted);
 
 }
 
-function playRandomTrack() {
+function playRandomTrack(onStarted) {
+
+    if (spotifyIsPlaying) {
+        return;
+    }
 
     let nextTrack = Math.floor(Math.random() * tracks.length);
 
@@ -3369,16 +3568,16 @@ function playRandomTrack() {
     const track = tracks[currentTrack];
     audio.pause();
     audio.src = track.src;
-    audio.volume = track.volume ?? (/Psycho Teddy/i.test(track.src) ? 0.35 : 0.75);
+    setAudioTargetVolume(audio, track.volume ?? (/Psycho Teddy/i.test(track.src) ? 0.35 : 0.75));
     audio.load();
 
     if (track.startAt) {
         audio.addEventListener("loadedmetadata", function() {
             audio.currentTime = track.startAt;
-            audio.play().catch(function() {});
+            requestAudioPlayback(audio, onStarted);
         }, { once: true });
     } else {
-        audio.play().catch(function() {});
+        requestAudioPlayback(audio, onStarted);
     }
 
 }
@@ -3393,34 +3592,15 @@ audio.addEventListener("ended", function() {
 
 });
 
-window.addEventListener("load", function() {
-
-    if (currentTrack < 0 && !isLyzyvalFocusTrackPlaying) {
-        playRandomTrack();
-    }
-
-});
-
-function startLocalMusic() {
-
-    if (audio.paused && !isLyzyvalFocusTrackPlaying) {
-        if (currentTrack < 0) {
-            playRandomTrack();
-        } else {
-            audio.play().catch(function() {});
-        }
-    }
-
+if (currentTrack < 0 && !isLyzyvalFocusTrackPlaying) {
+    playRandomTrack();
 }
-
-window.addEventListener("pointerdown", startLocalMusic, { once: true });
-window.addEventListener("keydown", startLocalMusic, { once: true });
 
 /* ★ PLAY */
 
 function playMusic() {
 
-    audio.play();
+    requestAudioPlayback(audio);
 
 }
 
@@ -3504,13 +3684,143 @@ const lyzyvalStories = [
 const spotifyPlaylist =
     document.getElementById("spotify-playlist");
 
+const spotifyEmbed =
+    document.querySelector(".music-embed");
+
+let spotifyController = null;
+let selectedSpotifyPlaylist = "spotify:playlist:4ozO57jFjVAkssXB50eWN2";
+
+function pauseLocalMusicForSpotify() {
+
+    if (spotifyIsPlaying) {
+        return;
+    }
+
+    spotifyIsPlaying = true;
+    const activePlayer = !audio.paused
+        ? audio
+        : !lyzyvalAudio.paused
+            ? lyzyvalAudio
+            : null;
+
+    localPlayerPausedForSpotify = activePlayer
+        ? {
+            player: activePlayer,
+            volume: audioTargetVolumes.get(activePlayer) ?? activePlayer.volume
+        }
+        : null;
+
+    if (!activePlayer) {
+        return;
+    }
+
+    fadeAudioVolume(activePlayer, 0, 700, function() {
+        audio.pause();
+        lyzyvalAudio.pause();
+    });
+
+}
+
+function resumeLocalMusicAfterSpotify() {
+
+    if (!spotifyIsPlaying) {
+        return;
+    }
+
+    spotifyIsPlaying = false;
+    const pausedMusic = localPlayerPausedForSpotify;
+    localPlayerPausedForSpotify = null;
+
+    if (!pausedMusic) {
+        return;
+    }
+
+    const isFocusMode = document.body.classList.contains("lyzyval-focus-mode");
+    const focusTrack = lyzyvalFocusTracks[lyzyvalImageIndex];
+    const playerToResume = pausedMusic.player;
+    const resumeWithFade = function(player, startPlayback) {
+        setAudioTargetVolume(player, pausedMusic.volume);
+        player.volume = 0;
+        startPlayback(function() {
+            const targetVolume = audioTargetVolumes.get(player) ?? pausedMusic.volume;
+            fadeAudioVolume(player, targetVolume, 700);
+        });
+    };
+
+    if (isFocusMode && playerToResume === lyzyvalAudio &&
+        lyzyvalAudio.src === new URL(focusTrack.src, document.baseURI).href) {
+        resumeWithFade(lyzyvalAudio, function(onStarted) {
+            requestAudioPlayback(lyzyvalAudio, onStarted);
+        });
+    } else if (!isFocusMode && playerToResume === audio) {
+        resumeWithFade(audio, function(onStarted) {
+            requestAudioPlayback(audio, onStarted);
+        });
+    } else if (isFocusMode) {
+        resumeWithFade(lyzyvalAudio, function(onStarted) {
+            playLyzyvalFocusTrack(onStarted);
+        });
+    } else {
+        resumeWithFade(audio, function(onStarted) {
+            playRandomTrack(onStarted);
+        });
+    }
+
+}
+
+function handleSpotifyPlaybackUpdate(event) {
+
+    if (event.data.isPaused) {
+        resumeLocalMusicAfterSpotify();
+    } else {
+        pauseLocalMusicForSpotify();
+    }
+
+}
+
+function changeSpotifyPlaylist(uri) {
+
+    if (uri === selectedSpotifyPlaylist) {
+        return;
+    }
+
+    selectedSpotifyPlaylist = uri;
+
+    if (!spotifyController) {
+        return;
+    }
+
+    spotifyController.loadUri(uri);
+
+}
+
+window.onSpotifyIframeApiReady = function(IFrameAPI) {
+
+    IFrameAPI.createController(spotifyPlaylist, {
+        uri: selectedSpotifyPlaylist,
+        width: spotifyEmbed.clientWidth,
+        height: 152
+    }, function(controller) {
+        spotifyController = controller;
+        spotifyController.addListener("playback_started", pauseLocalMusicForSpotify);
+        spotifyController.addListener("playback_update", handleSpotifyPlaybackUpdate);
+    });
+
+};
+
+const spotifyIframeApi = document.createElement("script");
+spotifyIframeApi.src = "https://open.spotify.com/embed/iframe-api/v1";
+spotifyIframeApi.async = true;
+spotifyIframeApi.onerror = function() {
+    console.error("No se pudo cargar la API del reproductor de Spotify.");
+};
+document.body.appendChild(spotifyIframeApi);
+
 const musicTitle =
     document.getElementById("music-title");
 
-const originalSpotifyPlaylist = spotifyPlaylist.src;
-
 const celestialSpotifyPlaylist =
-    "https://open.spotify.com/embed/playlist/1NNWDPKTQvU2iYMe1D1nE1?utm_source=generator&si=1ae7342ed4d24506";
+    "spotify:playlist:1NNWDPKTQvU2iYMe1D1nE1";
 
 let lyzyvalScrollPosition = { x: 0, y: 0 };
 
@@ -3528,7 +3838,10 @@ function toggleLyzyvalStory() {
     document.body.classList.toggle("lyzyval-focus-mode", isExpanded);
     marqueeText.textContent = isExpanded ? lyzyvalFocusMarqueeText : originalMarqueeText;
     marqueeText.classList.toggle("is-medieval-marquee", isExpanded);
-    spotifyPlaylist.src = isExpanded ? celestialSpotifyPlaylist : originalSpotifyPlaylist;
+    const nextSpotifyPlaylist = isExpanded
+        ? celestialSpotifyPlaylist
+        : "spotify:playlist:4ozO57jFjVAkssXB50eWN2";
+    changeSpotifyPlaylist(nextSpotifyPlaylist);
     musicTitle.textContent = isExpanded && lyzyvalImageIndex === 1 ? "♫ It's Her ♫" : "♫ Mi Música >w< ♫";
 
     if (!isExpanded) {
@@ -3542,6 +3855,7 @@ function toggleLyzyvalStory() {
     } else if (isLyzyvalFocusTrackPlaying) {
         isLyzyvalFocusTrackPlaying = false;
         focusTrackRequest++;
+        lyzyvalAudio.pause();
         playRandomTrack();
     }
 
@@ -3577,76 +3891,59 @@ lyzyvalArtwork.addEventListener("keydown", function(event) {
 });
 
 
-const draggableUzi = document.querySelector(".default-uzi");
+let draggedGif = null;
+let gifPointerOffsetX = 0;
+let gifPointerOffsetY = 0;
 
-if (draggableUzi) {
+document.querySelectorAll(".floating-gifs .floating-gif").forEach(function(gif) {
 
-    let isDraggingUzi = false;
-    let offsetX = 0;
-    let offsetY = 0;
-    let pointerStartX = 0;
-    let pointerStartY = 0;
-    let movedEnoughToDrag = false;
+    gif.classList.add("draggable-gif");
+    gif.draggable = false;
 
-    draggableUzi.addEventListener("pointerdown", function(event) {
+    gif.addEventListener("pointerdown", function(event) {
 
-        isDraggingUzi = true;
-        movedEnoughToDrag = false;
-        pointerStartX = event.clientX;
-        pointerStartY = event.clientY;
-        draggableUzi.classList.add("is-dragging");
+        draggedGif = gif;
+        gif.classList.add("is-dragging");
 
-        const rect = draggableUzi.getBoundingClientRect();
-        offsetX = event.clientX - rect.left;
-        offsetY = event.clientY - rect.top;
+        const rect = gif.getBoundingClientRect();
+        gifPointerOffsetX = event.clientX - rect.left;
+        gifPointerOffsetY = event.clientY - rect.top;
 
-        draggableUzi.setPointerCapture(event.pointerId);
+        gif.setPointerCapture(event.pointerId);
         event.preventDefault();
 
     });
 
-    document.addEventListener("pointermove", function(event) {
+});
 
-        if (!isDraggingUzi) return;
+document.addEventListener("pointermove", function(event) {
 
-        const distance = Math.hypot(event.clientX - pointerStartX, event.clientY - pointerStartY);
+    if (!draggedGif) return;
 
-        if (distance > 8) {
-            movedEnoughToDrag = true;
-        }
+    const parentRect = draggedGif.parentElement.getBoundingClientRect();
+    const maxLeft = parentRect.width - draggedGif.offsetWidth;
+    const maxTop = parentRect.height - draggedGif.offsetHeight;
+    const left = event.clientX - parentRect.left - gifPointerOffsetX;
+    const top = event.clientY - parentRect.top - gifPointerOffsetY;
 
-        const parentRect = draggableUzi.parentElement.getBoundingClientRect();
-        const maxLeft = parentRect.width - draggableUzi.offsetWidth;
-        const maxTop = parentRect.height - draggableUzi.offsetHeight;
+    draggedGif.style.left = Math.min(Math.max(left, 0), maxLeft) + "px";
+    draggedGif.style.top = Math.min(Math.max(top, 0), maxTop) + "px";
+    draggedGif.style.right = "auto";
+    draggedGif.style.bottom = "auto";
 
-        let x = event.clientX - parentRect.left - offsetX;
-        let y = event.clientY - parentRect.top - offsetY;
+});
 
-        x = Math.min(Math.max(x, 0), maxLeft);
-        y = Math.min(Math.max(y, 0), maxTop);
+function stopDraggingGif() {
 
-        draggableUzi.style.left = x + "px";
-        draggableUzi.style.top = y + "px";
+    if (!draggedGif) return;
 
-    });
-
-    document.addEventListener("pointerup", function() {
-
-        isDraggingUzi = false;
-        movedEnoughToDrag = false;
-        draggableUzi.classList.remove("is-dragging");
-
-    });
-
-    document.addEventListener("pointercancel", function() {
-
-        isDraggingUzi = false;
-        movedEnoughToDrag = false;
-        draggableUzi.classList.remove("is-dragging");
-
-    });
+    draggedGif.classList.remove("is-dragging");
+    draggedGif = null;
 
 }
+
+document.addEventListener("pointerup", stopDraggingGif);
+document.addEventListener("pointercancel", stopDraggingGif);
 
 </script>
 
