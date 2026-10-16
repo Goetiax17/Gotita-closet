@@ -411,17 +411,19 @@ body.lyzyval-focus-mode .lyzyval-corner-branches {
 
 }
 
-.floating-gif.gallery-access-trigger {
+.profile-picture .gallery-access-trigger {
 
-    top: 82%;
+    position: absolute;
 
-    right: 33%;
+    top: 8px;
 
-    z-index: 9;
+    right: 8px;
 
-    width: 86px;
+    z-index: 2;
 
-    height: 86px;
+    width: 44px;
+
+    height: 44px;
 
     animation: none;
 
@@ -429,9 +431,11 @@ body.lyzyval-focus-mode .lyzyval-corner-branches {
 
     cursor: pointer;
 
+    filter: drop-shadow(2px 2px 0 rgba(22,14,20,.8));
+
 }
 
-.floating-gif.gallery-access-trigger:focus-visible {
+.profile-picture .gallery-access-trigger:focus-visible {
 
     outline: 2px solid var(--lightpink);
 
@@ -978,6 +982,131 @@ body::after {
 
 }
 
+#temporary-doodle-canvas {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 10000;
+
+    display: none;
+
+    pointer-events: none;
+
+}
+
+body.temporary-doodle-mode #temporary-doodle-canvas {
+
+    display: block;
+
+    pointer-events: auto;
+
+    touch-action: none;
+
+    cursor: crosshair;
+
+}
+
+.temporary-doodle-tools {
+
+    position: fixed;
+
+    top: 12px;
+
+    right: 12px;
+
+    z-index: 10001;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 8px;
+
+    max-width: calc(100vw - 24px);
+
+    padding: 10px;
+
+    border: 2px solid var(--lightpink);
+
+    background: rgba(36, 20, 30, .96);
+
+    box-shadow: 4px 4px 0 #5b1c3b;
+
+}
+
+.temporary-doodle-tools[hidden] {
+
+    display: none;
+
+}
+
+.temporary-doodle-tools label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.temporary-doodle-tools input[type="color"] {
+
+    width: 34px;
+
+    height: 32px;
+
+    padding: 2px;
+
+    border: 1px solid var(--lightpink);
+
+    background: var(--dark);
+
+}
+
+.temporary-doodle-tools input[type="range"] {
+
+    width: 85px;
+
+    accent-color: var(--pink);
+
+}
+
+.temporary-doodle-tools button {
+
+    min-height: 32px;
+
+    padding: 4px 10px;
+
+    border: 1px solid var(--white);
+
+    background: var(--pink);
+
+    color: #24121b;
+
+    font: inherit;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+.temporary-doodle-tools button:focus-visible,
+.temporary-doodle-tools input:focus-visible {
+
+    outline: 2px solid var(--white);
+
+    outline-offset: 2px;
+
+}
+
 .container {
 
     width: 92%;
@@ -1294,6 +1423,8 @@ section {
 }
 
 .profile-picture {
+
+    position: relative;
 
     height: 230px;
 
@@ -2643,6 +2774,42 @@ body.lyzyval-focus-mode .playlist-story-title {
 
 }
 
+.private-gallery-item {
+
+    display: grid;
+
+    align-content: start;
+
+    gap: 8px;
+
+}
+
+.private-gallery-item button {
+
+    padding: 6px 10px;
+
+    border: 2px solid var(--white);
+
+    background: #5b1c3b;
+
+    color: var(--white);
+
+    font: inherit;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+.private-gallery-item button:disabled {
+
+    cursor: wait;
+
+    opacity: .65;
+
+}
+
 .drawing-note {
 
     margin: 10px 0 0;
@@ -3228,6 +3395,20 @@ body.celestial-mode .lyzyval-art .art-image {
 
 <body>
 
+<canvas id="temporary-doodle-canvas" aria-label="Capa temporal para dibujar sobre la página"></canvas>
+
+<div class="temporary-doodle-tools" id="temporary-doodle-tools" role="group" aria-label="Herramientas de doodle" hidden>
+    <label>
+        Color
+        <input id="temporary-doodle-color" type="color" value="#ff4fa3" aria-label="Color del doodle">
+    </label>
+    <label>
+        Tamaño
+        <input id="temporary-doodle-size" type="range" min="2" max="30" value="6" aria-label="Tamaño del doodle">
+    </label>
+    <button id="temporary-doodle-clear" type="button">Limpiar</button>
+    <button id="temporary-doodle-close" type="button">Salir</button>
+</div>
 
 <div class="floating-gifs">
 
@@ -3248,8 +3429,6 @@ body.celestial-mode .lyzyval-art .art-image {
         <img class="floating-gif default-sylveon" src="sylveon.gif" alt="Sylveon">
 
         <img class="floating-gif default-corazoncito" src="corazoncito.gif" alt="Corazoncito">
-
-        <img class="floating-gif gallery-access-trigger" src="corazoncontra.png" alt="Abrir galería privada" role="button" tabindex="0" aria-haspopup="dialog">
 
         <img class="floating-gif draggable-gif default-uzi" src="uzi plush.gif" alt="UZI" draggable="false">
 
@@ -3318,7 +3497,7 @@ body.celestial-mode .lyzyval-art .art-image {
         ✦ BLOG PERSONAL ✦
     </div>
 
-    <div class="logo">
+    <div class="logo" tabindex="-1">
         EL CLOSET DE GOTITA
     </div>
 
@@ -3421,6 +3600,8 @@ body.celestial-mode .lyzyval-art .art-image {
 
         <img src="GOTITA rawr.jpeg"
              alt="Me fr">
+
+        <img class="gallery-access-trigger" src="corazoncontra.png" alt="Abrir galería privada" role="button" tabindex="0" aria-haspopup="dialog">
 
     </div>
 
@@ -4501,7 +4682,9 @@ async function getFirebaseServices() {
                 signOut: authSdk.signOut,
                 database: firestoreSdk.getFirestore(app),
                 collection: firestoreSdk.collection,
+                document: firestoreSdk.doc,
                 addDocument: firestoreSdk.addDoc,
+                deleteDocument: firestoreSdk.deleteDoc,
                 getDocuments: firestoreSdk.getDocs,
                 createQuery: firestoreSdk.query,
                 serverTimestamp: firestoreSdk.serverTimestamp,
@@ -4594,8 +4777,11 @@ async function showPrivateGallery(services) {
         );
         const drawings = await services.getDocuments(drawingsQuery);
         const orderedDrawings = drawings.docs
-            .map(function(drawing) {
-                return drawing.data();
+            .map(function(drawingDocument) {
+                return {
+                    id: drawingDocument.id,
+                    ...drawingDocument.data()
+                };
             })
             .filter(function(drawing) {
                 return typeof drawing.image === "string" &&
@@ -4607,11 +4793,46 @@ async function showPrivateGallery(services) {
             });
 
         orderedDrawings.forEach(function(drawing) {
+            const item = document.createElement("article");
+            item.className = "private-gallery-item";
+
             const image = document.createElement("img");
             image.src = drawing.image;
             image.alt = "Dibujito anónimo recibido";
             image.loading = "lazy";
-            galleryGrid.appendChild(image);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.textContent = "Borrar dibujo";
+            deleteButton.setAttribute("aria-label", "Borrar este dibujito");
+            deleteButton.addEventListener("click", async function() {
+                if (!window.confirm("¿Quieres borrar este dibujito? No se puede deshacer.")) {
+                    return;
+                }
+
+                deleteButton.disabled = true;
+                galleryStatus.textContent = "Borrando dibujito…";
+
+                try {
+                    await services.deleteDocument(
+                        services.document(services.database, "anonymousDrawings", drawing.id)
+                    );
+                    item.remove();
+                    const remainingDrawings = galleryGrid.children.length;
+                    galleryStatus.textContent = remainingDrawings
+                        ? `Tienes ${remainingDrawings} dibujito${remainingDrawings === 1 ? "" : "s"} ♡`
+                        : "Todavía no hay dibujitos para mostrar.";
+                } catch (error) {
+                    console.error("No se pudo borrar el dibujo privado:", error);
+                    galleryStatus.textContent = error.code === "permission-denied"
+                        ? "No se pudo borrar. Publica las reglas actualizadas de Firestore e inténtalo de nuevo."
+                        : "No se pudo borrar el dibujo. Revisa tu conexión e inténtalo de nuevo.";
+                    deleteButton.disabled = false;
+                }
+            });
+
+            item.append(image, deleteButton);
+            galleryGrid.appendChild(item);
         });
 
         galleryStatus.textContent = orderedDrawings.length
@@ -4707,6 +4928,176 @@ privateGalleryDialog.addEventListener("click", function(event) {
 });
 privateGalleryDialog.addEventListener("close", function() {
     galleryPassword.value = "";
+});
+
+const temporaryDoodleCanvas = document.getElementById("temporary-doodle-canvas");
+const temporaryDoodleContext = temporaryDoodleCanvas.getContext("2d");
+const temporaryDoodleTools = document.getElementById("temporary-doodle-tools");
+const temporaryDoodleColor = document.getElementById("temporary-doodle-color");
+const temporaryDoodleSize = document.getElementById("temporary-doodle-size");
+const logo = document.querySelector(".logo");
+
+let temporaryDoodleActive = false;
+let temporaryDoodleInProgress = false;
+let logoActivationCount = 0;
+let logoActivationTimeout;
+
+function resizeTemporaryDoodleCanvas(preserveDrawing) {
+
+    const oldWidth = temporaryDoodleCanvas.width;
+    const oldHeight = temporaryDoodleCanvas.height;
+    const previousDrawing = preserveDrawing && oldWidth > 0 && oldHeight > 0
+        ? document.createElement("canvas")
+        : null;
+
+    if (previousDrawing) {
+        previousDrawing.width = oldWidth;
+        previousDrawing.height = oldHeight;
+        previousDrawing.getContext("2d").drawImage(temporaryDoodleCanvas, 0, 0);
+    }
+
+    const width = Math.max(document.documentElement.scrollWidth, window.innerWidth);
+    const height = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight,
+        window.innerHeight
+    );
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    temporaryDoodleCanvas.width = Math.ceil(width * pixelRatio);
+    temporaryDoodleCanvas.height = Math.ceil(height * pixelRatio);
+    temporaryDoodleCanvas.style.width = `${width}px`;
+    temporaryDoodleCanvas.style.height = `${height}px`;
+    temporaryDoodleContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+    if (previousDrawing) {
+        temporaryDoodleContext.drawImage(previousDrawing, 0, 0, width, height);
+    }
+
+}
+
+function activateTemporaryDoodle() {
+
+    if (temporaryDoodleActive || document.body.classList.contains("lyzyval-focus-mode")) {
+        return;
+    }
+
+    temporaryDoodleActive = true;
+    resizeTemporaryDoodleCanvas(true);
+    document.body.classList.add("temporary-doodle-mode");
+    temporaryDoodleTools.hidden = false;
+    document.getElementById("temporary-doodle-close").focus();
+
+}
+
+function deactivateTemporaryDoodle() {
+
+    temporaryDoodleActive = false;
+    temporaryDoodleInProgress = false;
+    document.body.classList.remove("temporary-doodle-mode");
+    temporaryDoodleTools.hidden = true;
+    logo.focus({ preventScroll: true });
+
+}
+
+function getTemporaryDoodlePoint(event) {
+
+    const bounds = temporaryDoodleCanvas.getBoundingClientRect();
+
+    return {
+        x: event.clientX - bounds.left,
+        y: event.clientY - bounds.top
+    };
+
+}
+
+temporaryDoodleCanvas.addEventListener("pointerdown", function(event) {
+
+    if (!temporaryDoodleActive || (event.button !== 0 && event.pointerType === "mouse")) {
+        return;
+    }
+
+    temporaryDoodleInProgress = true;
+    temporaryDoodleCanvas.setPointerCapture(event.pointerId);
+    const point = getTemporaryDoodlePoint(event);
+    temporaryDoodleContext.beginPath();
+    temporaryDoodleContext.moveTo(point.x, point.y);
+    temporaryDoodleContext.lineTo(point.x + 0.01, point.y + 0.01);
+    temporaryDoodleContext.lineWidth = Number(temporaryDoodleSize.value);
+    temporaryDoodleContext.lineCap = "round";
+    temporaryDoodleContext.lineJoin = "round";
+    temporaryDoodleContext.strokeStyle = temporaryDoodleColor.value;
+    temporaryDoodleContext.stroke();
+    event.preventDefault();
+
+});
+
+temporaryDoodleCanvas.addEventListener("pointermove", function(event) {
+
+    if (!temporaryDoodleInProgress) {
+        return;
+    }
+
+    const point = getTemporaryDoodlePoint(event);
+    temporaryDoodleContext.lineWidth = Number(temporaryDoodleSize.value);
+    temporaryDoodleContext.lineCap = "round";
+    temporaryDoodleContext.lineJoin = "round";
+    temporaryDoodleContext.strokeStyle = temporaryDoodleColor.value;
+    temporaryDoodleContext.lineTo(point.x, point.y);
+    temporaryDoodleContext.stroke();
+    event.preventDefault();
+
+});
+
+function stopTemporaryDoodle() {
+
+    temporaryDoodleInProgress = false;
+    temporaryDoodleContext.beginPath();
+
+}
+
+temporaryDoodleCanvas.addEventListener("pointerup", stopTemporaryDoodle);
+temporaryDoodleCanvas.addEventListener("pointercancel", stopTemporaryDoodle);
+window.addEventListener("resize", function() {
+    if (temporaryDoodleActive) {
+        resizeTemporaryDoodleCanvas(true);
+    }
+});
+
+logo.addEventListener("click", function() {
+
+    if (temporaryDoodleActive || document.body.classList.contains("lyzyval-focus-mode")) {
+        return;
+    }
+
+    logoActivationCount++;
+    window.clearTimeout(logoActivationTimeout);
+    logoActivationTimeout = window.setTimeout(function() {
+        logoActivationCount = 0;
+    }, 1800);
+
+    if (logoActivationCount >= 5) {
+        logoActivationCount = 0;
+        window.clearTimeout(logoActivationTimeout);
+        activateTemporaryDoodle();
+    }
+
+});
+
+document.getElementById("temporary-doodle-clear").addEventListener("click", function() {
+    temporaryDoodleContext.clearRect(
+        0,
+        0,
+        temporaryDoodleCanvas.width,
+        temporaryDoodleCanvas.height
+    );
+});
+
+document.getElementById("temporary-doodle-close").addEventListener("click", deactivateTemporaryDoodle);
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" && temporaryDoodleActive) {
+        deactivateTemporaryDoodle();
+    }
 });
 
 </script>
