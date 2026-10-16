@@ -411,6 +411,34 @@ body.lyzyval-focus-mode .lyzyval-corner-branches {
 
 }
 
+.floating-gif.gallery-access-trigger {
+
+    top: 82%;
+
+    right: 33%;
+
+    z-index: 9;
+
+    width: 86px;
+
+    height: 86px;
+
+    animation: none;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+}
+
+.floating-gif.gallery-access-trigger:focus-visible {
+
+    outline: 2px solid var(--lightpink);
+
+    outline-offset: 3px;
+
+}
+
 .default-gifs,
 .celestial-gifs {
 
@@ -2462,17 +2490,128 @@ body.lyzyval-focus-mode .playlist-story-title {
 
 }
 
-.drawing-note {
+.private-gallery-dialog {
 
-    margin: 10px 0 0;
+    width: min(720px, calc(100% - 28px));
 
-    color: #d8b9ca;
+    max-height: min(85vh, 760px);
 
-    font-size: 15px;
+    padding: 22px;
+
+    border: 3px solid var(--pink);
+
+    background: var(--dark);
+
+    color: var(--white);
+
+    box-shadow: 8px 8px 0 #5b1c3b;
 
 }
 
-.anonymous-drawing-gallery {
+.private-gallery-dialog::backdrop {
+
+    background: rgba(12, 7, 12, .78);
+
+    backdrop-filter: blur(3px);
+
+}
+
+.private-gallery-dialog h2 {
+
+    margin: 0 0 16px;
+
+    color: var(--lightpink);
+
+    font-family: "Caveat Brush", cursive;
+
+}
+
+.private-gallery-form {
+
+    display: grid;
+
+    gap: 12px;
+
+}
+
+.private-gallery-form[hidden],
+.private-gallery-actions[hidden] {
+
+    display: none;
+
+}
+
+.private-gallery-form label {
+
+    display: grid;
+
+    gap: 5px;
+
+}
+
+.private-gallery-form input {
+
+    width: 100%;
+
+    padding: 9px;
+
+    border: 2px solid var(--lightpink);
+
+    background: #160e14;
+
+    color: var(--white);
+
+    font: inherit;
+
+}
+
+.private-gallery-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 14px;
+
+}
+
+.private-gallery-actions button {
+
+    padding: 8px 14px;
+
+    border: 2px solid var(--white);
+
+    background: var(--pink);
+
+    color: #24121b;
+
+    font: inherit;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+.private-gallery-actions button:disabled {
+
+    cursor: wait;
+
+    opacity: .65;
+
+}
+
+.private-gallery-status {
+
+    min-height: 1.5em;
+
+    color: var(--lightpink);
+
+}
+
+.private-gallery-grid {
 
     display: grid;
 
@@ -2480,11 +2619,15 @@ body.lyzyval-focus-mode .playlist-story-title {
 
     gap: 12px;
 
-    margin-top: 24px;
+    max-height: 55vh;
+
+    overflow: auto;
+
+    margin-top: 16px;
 
 }
 
-.anonymous-drawing-gallery img {
+.private-gallery-grid img {
 
     display: block;
 
@@ -2500,9 +2643,13 @@ body.lyzyval-focus-mode .playlist-story-title {
 
 }
 
-.anonymous-drawing-gallery:empty {
+.drawing-note {
 
-    display: none;
+    margin: 10px 0 0;
+
+    color: #d8b9ca;
+
+    font-size: 15px;
 
 }
 
@@ -3082,7 +3229,7 @@ body.celestial-mode .lyzyval-art .art-image {
 <body>
 
 
-<div class="floating-gifs" aria-hidden="true">
+<div class="floating-gifs">
 
     <div class="default-gifs">
 
@@ -3101,6 +3248,8 @@ body.celestial-mode .lyzyval-art .art-image {
         <img class="floating-gif default-sylveon" src="sylveon.gif" alt="Sylveon">
 
         <img class="floating-gif default-corazoncito" src="corazoncito.gif" alt="Corazoncito">
+
+        <img class="floating-gif gallery-access-trigger" src="corazoncontra.png" alt="Abrir galería privada" role="button" tabindex="0" aria-haspopup="dialog">
 
         <img class="floating-gif draggable-gif default-uzi" src="uzi plush.gif" alt="UZI" draggable="false">
 
@@ -3555,11 +3704,40 @@ body.celestial-mode .lyzyval-art .art-image {
 
         <button class="drawing-submit" id="drawing-submit" type="button">Enviar anónimamente</button>
         <p class="drawing-status" id="drawing-status" role="status" aria-live="polite"></p>
-        <div class="anonymous-drawing-gallery" id="public-drawings" aria-label="Dibujitos anónimos"></div>
 
     </div>
 
 </section>
+
+<dialog class="private-gallery-dialog" id="private-gallery-dialog" aria-labelledby="private-gallery-title">
+
+    <h2 id="private-gallery-title">♡ Galería privada ♡</h2>
+
+    <form class="private-gallery-form" id="private-gallery-login">
+        <label>
+            Correo
+            <input id="gallery-email" type="email" autocomplete="username" required>
+        </label>
+        <label>
+            Contraseña
+            <input id="gallery-password" type="password" autocomplete="current-password" required>
+        </label>
+        <div class="private-gallery-actions">
+            <button id="gallery-login-button" type="submit">Entrar</button>
+            <button id="gallery-close-button" type="button">Cerrar</button>
+        </div>
+    </form>
+
+    <div class="private-gallery-actions" id="private-gallery-session" hidden>
+        <button id="gallery-refresh-button" type="button">Actualizar dibujos</button>
+        <button id="gallery-logout-button" type="button">Cerrar sesión</button>
+        <button id="gallery-session-close-button" type="button">Cerrar galería</button>
+    </div>
+
+    <p class="private-gallery-status" id="private-gallery-status" role="status" aria-live="polite"></p>
+    <div class="private-gallery-grid" id="private-gallery-grid"></div>
+
+</dialog>
 
 <section id="links">
 
@@ -4131,7 +4309,7 @@ let draggedGif = null;
 let gifPointerOffsetX = 0;
 let gifPointerOffsetY = 0;
 
-document.querySelectorAll(".floating-gifs .floating-gif").forEach(function(gif) {
+document.querySelectorAll(".floating-gifs .floating-gif:not(.gallery-access-trigger)").forEach(function(gif) {
 
     gif.classList.add("draggable-gif");
     gif.draggable = false;
@@ -4194,6 +4372,7 @@ const firebaseConfig = {
     appId: "1:170275057420:web:5f2af87ca96f8c999e2329"
 };
 
+const galleryOwnerUid = "IRKJxLPTwAPjUdQF1DwfrylQMMP2";
 const canvas = document.getElementById("anonymous-drawing-canvas");
 const context = canvas.getContext("2d");
 const colorInput = document.getElementById("drawing-color");
@@ -4203,8 +4382,15 @@ const eraserButton = document.getElementById("drawing-eraser");
 const clearButton = document.getElementById("drawing-clear");
 const submitButton = document.getElementById("drawing-submit");
 const statusMessage = document.getElementById("drawing-status");
-const publicDrawings = document.getElementById("public-drawings");
 const drawingBackground = "#fff5fa";
+const privateGalleryDialog = document.getElementById("private-gallery-dialog");
+const privateGalleryLogin = document.getElementById("private-gallery-login");
+const galleryEmail = document.getElementById("gallery-email");
+const galleryPassword = document.getElementById("gallery-password");
+const galleryLoginButton = document.getElementById("gallery-login-button");
+const gallerySession = document.getElementById("private-gallery-session");
+const galleryStatus = document.getElementById("private-gallery-status");
+const galleryGrid = document.getElementById("private-gallery-grid");
 let firebaseServicesPromise;
 
 let isDrawing = false;
@@ -4299,20 +4485,6 @@ clearButton.addEventListener("click", clearDrawingCanvas);
 
 clearDrawingCanvas();
 
-function showPublishedDrawings(snapshot) {
-
-    publicDrawings.replaceChildren();
-
-    snapshot.forEach(function(drawing) {
-        const image = document.createElement("img");
-        image.src = drawing.data().image;
-        image.alt = "Dibujito anónimo publicado";
-        image.loading = "lazy";
-        publicDrawings.appendChild(image);
-    });
-
-}
-
 async function getFirebaseServices() {
 
     if (!firebaseServicesPromise) {
@@ -4325,11 +4497,13 @@ async function getFirebaseServices() {
             return {
                 auth: authSdk.getAuth(app),
                 signInAnonymously: authSdk.signInAnonymously,
+                signInWithEmailAndPassword: authSdk.signInWithEmailAndPassword,
+                signOut: authSdk.signOut,
                 database: firestoreSdk.getFirestore(app),
-                addDoc: firestoreSdk.addDoc,
                 collection: firestoreSdk.collection,
-                onSnapshot: firestoreSdk.onSnapshot,
-                query: firestoreSdk.query,
+                addDocument: firestoreSdk.addDoc,
+                getDocuments: firestoreSdk.getDocs,
+                createQuery: firestoreSdk.query,
                 serverTimestamp: firestoreSdk.serverTimestamp,
                 where: firestoreSdk.where
             };
@@ -4355,15 +4529,15 @@ submitButton.addEventListener("click", async function() {
         const credential = services.auth.currentUser
             ? { user: services.auth.currentUser }
             : await services.signInAnonymously(services.auth);
-        const image = canvas.toDataURL("image/jpeg", 0.76);
+        const image = canvas.toDataURL("image/jpeg", 0.68);
 
-        if (image.length > 650000) {
+        if (image.length > 700000) {
             throw new Error("El dibujo pesa demasiado. Prueba con trazos más sencillos.");
         }
 
-        await services.addDoc(services.collection(services.database, "anonymousDrawings"), {
+        await services.addDocument(services.collection(services.database, "anonymousDrawings"), {
             image: image,
-            status: "published",
+            status: "received",
             createdAt: services.serverTimestamp(),
             uid: credential.user.uid,
             width: canvas.width,
@@ -4371,39 +4545,169 @@ submitButton.addEventListener("click", async function() {
         });
 
         clearDrawingCanvas();
-        statusMessage.textContent = "¡Gracias! Tu dibujito ya está publicado ♡";
+        statusMessage.textContent = "¡Gracias! Tu dibujito fue enviado ♡";
     } catch (error) {
         console.error("No se pudo enviar el dibujito anónimo:", error);
-        statusMessage.textContent = error.code === "permission-denied"
-            ? "No se pudo enviar: revisa las reglas de Firestore y activa el acceso anónimo en Firebase."
-            : error.message === "The operation was aborted."
-                ? "No se pudo conectar con Firebase. Revisa tu conexión e inténtalo de nuevo."
-                : "No se pudo enviar el dibujo. Revisa la configuración de Firebase e inténtalo de nuevo.";
+        if (error.message === "El dibujo pesa demasiado. Prueba con trazos más sencillos.") {
+            statusMessage.textContent = error.message;
+        } else if (error.code === "permission-denied") {
+            statusMessage.textContent = "No se pudo enviar: revisa las reglas de Firestore y activa el acceso anónimo en Firebase.";
+        } else if (error.message === "The operation was aborted.") {
+            statusMessage.textContent = "No se pudo conectar con Firebase. Revisa tu conexión e inténtalo de nuevo.";
+        } else {
+            statusMessage.textContent = "No se pudo enviar el dibujo. Revisa la configuración de Firebase e inténtalo de nuevo.";
+        }
     } finally {
         submitButton.disabled = false;
     }
 
 });
 
-async function loadPublishedDrawings() {
+function openPrivateGallery() {
+
+    galleryStatus.textContent = "";
+    galleryGrid.replaceChildren();
+    privateGalleryDialog.showModal();
+
+    getFirebaseServices().then(function(services) {
+        if (services.auth.currentUser?.uid === galleryOwnerUid) {
+            showPrivateGallery(services);
+        }
+    }).catch(function(error) {
+        console.error("No se pudo preparar el acceso a la galería privada:", error);
+        galleryStatus.textContent = "No se pudo conectar con Firebase. Inténtalo de nuevo.";
+    });
+
+}
+
+async function showPrivateGallery(services) {
+
+    privateGalleryLogin.hidden = true;
+    gallerySession.hidden = false;
+    galleryStatus.textContent = "Cargando tus dibujitos…";
+    galleryGrid.replaceChildren();
 
     try {
-        const services = await getFirebaseServices();
-        const publicQuery = services.query(
+        const drawingsQuery = services.createQuery(
             services.collection(services.database, "anonymousDrawings"),
-            services.where("status", "==", "published")
+            services.where("uid", "==", galleryOwnerUid)
         );
+        const drawings = await services.getDocuments(drawingsQuery);
+        const orderedDrawings = drawings.docs
+            .map(function(drawing) {
+                return drawing.data();
+            })
+            .filter(function(drawing) {
+                return typeof drawing.image === "string" &&
+                    drawing.image.startsWith("data:image/jpeg;base64,");
+            })
+            .sort(function(first, second) {
+                return (second.createdAt?.toMillis?.() ?? 0) -
+                    (first.createdAt?.toMillis?.() ?? 0);
+            });
 
-        services.onSnapshot(publicQuery, showPublishedDrawings, function(error) {
-            console.error("No se pudieron cargar los dibujitos publicados:", error);
+        orderedDrawings.forEach(function(drawing) {
+            const image = document.createElement("img");
+            image.src = drawing.image;
+            image.alt = "Dibujito anónimo recibido";
+            image.loading = "lazy";
+            galleryGrid.appendChild(image);
         });
+
+        galleryStatus.textContent = orderedDrawings.length
+            ? `Tienes ${orderedDrawings.length} dibujito${orderedDrawings.length === 1 ? "" : "s"} ♡`
+            : "Todavía no hay dibujitos para mostrar.";
     } catch (error) {
-        console.error("No se pudieron inicializar los dibujitos publicados:", error);
+        console.error("No se pudieron cargar los dibujos privados:", error);
+        galleryStatus.textContent = "No se pudieron cargar. Revisa las reglas de Firestore.";
     }
 
 }
 
-loadPublishedDrawings();
+privateGalleryLogin.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+    galleryLoginButton.disabled = true;
+    galleryStatus.textContent = "Comprobando acceso…";
+
+    try {
+        const services = await getFirebaseServices();
+        const credential = await services.signInWithEmailAndPassword(
+            services.auth,
+            galleryEmail.value.trim(),
+            galleryPassword.value
+        );
+
+        if (credential.user.uid !== galleryOwnerUid) {
+            await services.signOut(services.auth);
+            throw new Error("Esta cuenta no tiene acceso a la galería.");
+        }
+
+        galleryPassword.value = "";
+        await showPrivateGallery(services);
+    } catch (error) {
+        console.error("No se pudo iniciar sesión en la galería privada:", error);
+        privateGalleryLogin.hidden = false;
+        gallerySession.hidden = true;
+        galleryStatus.textContent = error.message === "Esta cuenta no tiene acceso a la galería."
+            ? error.message
+            : error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" ||
+                error.code === "auth/wrong-password"
+                ? "Correo o contraseña incorrectos."
+                : "No se pudo iniciar sesión. Revisa que Email/Password esté habilitado en Firebase.";
+    } finally {
+        galleryLoginButton.disabled = false;
+    }
+
+});
+
+document.getElementById("gallery-refresh-button").addEventListener("click", async function() {
+
+    const services = await getFirebaseServices();
+    await showPrivateGallery(services);
+
+});
+
+document.getElementById("gallery-logout-button").addEventListener("click", async function() {
+
+    try {
+        const services = await getFirebaseServices();
+        await services.signOut(services.auth);
+        privateGalleryLogin.hidden = false;
+        gallerySession.hidden = true;
+        galleryGrid.replaceChildren();
+        galleryStatus.textContent = "Cerraste sesión.";
+    } catch (error) {
+        console.error("No se pudo cerrar la sesión de la galería:", error);
+        galleryStatus.textContent = "No se pudo cerrar sesión. Inténtalo de nuevo.";
+    }
+
+});
+
+function closePrivateGallery() {
+
+    privateGalleryDialog.close();
+    galleryPassword.value = "";
+
+}
+
+document.querySelector(".gallery-access-trigger").addEventListener("click", openPrivateGallery);
+document.querySelector(".gallery-access-trigger").addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openPrivateGallery();
+    }
+});
+document.getElementById("gallery-close-button").addEventListener("click", closePrivateGallery);
+document.getElementById("gallery-session-close-button").addEventListener("click", closePrivateGallery);
+privateGalleryDialog.addEventListener("click", function(event) {
+    if (event.target === privateGalleryDialog) {
+        closePrivateGallery();
+    }
+});
+privateGalleryDialog.addEventListener("close", function() {
+    galleryPassword.value = "";
+});
 
 </script>
 
